@@ -13,7 +13,7 @@ public class InteractiveConsole implements Console {
             case "member": {
                 while (true) callMemberFunction(memberConsole());
             }
-        }
+        }//
     }
 
     @Override
