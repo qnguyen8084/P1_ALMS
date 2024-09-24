@@ -1,15 +1,15 @@
 package AdaptiveLibraryManagementSystem;
 
-abstract class User {
+abstract class UserModel {
     protected int userID;
     protected String name;
 
-    public User(int userID, String name) {
+    public UserModel(int userID, String name) {
         this.userID = userID;
         this.name = name;
     }
 
-    class Member extends User implements Transactions{
+    class Member extends UserModel implements Transactions{
         public Member(int userID, String name) {
             super(userID, name);
         }
@@ -30,7 +30,7 @@ abstract class User {
         }
     }
 
-    class Admin extends User implements AdminTransactions {
+    class Admin extends UserModel implements AdminTransactions {
         public Admin(int userID, String name) {
             super(userID, name);
         }
