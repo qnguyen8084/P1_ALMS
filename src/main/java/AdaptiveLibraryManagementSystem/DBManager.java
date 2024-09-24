@@ -16,7 +16,7 @@ public class DBManager {
         return conn;
     }
 
-    public static Connection initializeDatabase() {
+    public static void initializeDatabase() {
         String booksTable = "CREATE TABLE IF NOT EXISTS books (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT NOT NULL," +
@@ -27,21 +27,23 @@ public class DBManager {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL);";
 
-        Connection dbConnection = null;
+        Connection dbConnection;
         try {
             dbConnection = connect();
             Statement stmt = dbConnection.createStatement();
             stmt.execute(booksTable);
             stmt.execute(usersTable);
+            /*
             System.out.println("""
                     \u001B[34mLibrary database has successfully been initialized
-                    
+
                     \u001B[0m""");
+
+             */
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return dbConnection;
     }
 }
