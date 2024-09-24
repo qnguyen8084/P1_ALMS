@@ -30,9 +30,7 @@ public class AdaptiveLibraryManagementSystem {
         System.out.println("Hello and welcome to Adaptive Library Management System!");
         // Initialize Database for persistent storage.
         Connection conn = DBManager.initializeDatabase();
-        BookManager bookManager = new BookManager(conn);
-        UserManager userManager = new UserManager(conn);
-        UserInterface.initializeInterface(bookManager, userManager);
+        UserInterface.initializeInterface();
 
 
         // User interface in MVC this will be related to the controller

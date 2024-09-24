@@ -4,8 +4,16 @@ public class Book {
     private String title;
     private String author;
     private boolean isAvailable;
+    private int bookId;
 
     public Book(String title, String author, boolean isAvailable) {
+        this.title = title;
+        this.author = author;
+        this.isAvailable = isAvailable;
+    }
+
+    public Book(int bookId, String title, String author, boolean isAvailable) {
+        this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.isAvailable = isAvailable;

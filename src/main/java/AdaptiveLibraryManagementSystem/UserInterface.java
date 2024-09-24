@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    public static void initializeInterface(BookManager bookManager, UserManager userManager) {
+    public static void initializeInterface() {
         Scanner scanner = new Scanner(System.in);
         String command;
 
@@ -14,94 +14,93 @@ public class UserInterface {
 
         switch (command) {
             case "admin": {
-                startAdminInterface(bookManager, userManager);
+                startAdminInterface();
             }
 
             case "member": {
-                startMemberInterface(bookManager);
+                startMemberInterface();
             }
         }
     }
 
-    public static void startAdminInterface(BookManager bookManager, UserManager userManager) {
+    public static void startAdminInterface() {
+        BookManager bookManager = new BookManager();
+        UserManager userManager = new UserManager();
         Scanner scanner = new Scanner(System.in);
-        int command;
+        String command;
         while (true) {
-            System.out.println("Welcome admin");
-            System.out.println("1: Add book");
-            System.out.println("2: remove book");
-            System.out.println("3: List books");
-            System.out.println("4: Add member");
-            System.out.println("5: Remove member");
-            System.out.println("6: List members");
-            System.out.println("0: exit");
-            System.out.print("What would you like to do today? ");
-            command = Integer.parseInt(scanner.nextLine());
+            System.out.println("Hello admin");
+            System.out.print("Please choose and option " +
+                    "(addBook, removeBook, listBooks, " +
+                    "addMember, removeMember, listMembers, exit): ");
+            command = scanner.nextLine();
             switch (command) {
-                case 1:
+                case "addBook":
                     System.out.print("Enter title: ");
                     String title = scanner.nextLine();
                     System.out.print("Enter author: ");
                     String author = scanner.nextLine();
                     BookManager.addBook(title, author);
                     break;
-                case 2:
+                case "removeBook":
+                    System.out.print("Enter book ID: ");
+                    int bookId = Integer.parseInt(scanner.nextLine());
+                    BookManager.removeBook(bookId);
                     break;
-                case 3:
+                case "listBooks":
                     bookManager.listBooks();
                     break;
-                case 4:
+                case "addMember":
                     System.out.print("Enter name: ");
                     String name = scanner.nextLine();
-                    userManager.addUser(name);
+                    userManager.addMember(name);
                     break;
-                case 5:
+                case "removeMember":
+                    System.out.print("Enter member ID: ");
+                    int memberId = Integer.parseInt(scanner.nextLine());
+                    userManager.removeMember(memberId);
                     break;
-                case 6:
+                case "listMembers":
                     userManager.listUsers();
                     break;
-                case 0:
+                case "exit":
                     scanner.close();
                     System.out.println("Thank you for using Adaptive Library Management System!");
-                    return;
-
+                    System.exit(0);
                 default:
                     System.out.println("Unknown command.");
             }
         }
     }
 
-    public static void startMemberInterface(BookManager bookManager) {
+    public static void startMemberInterface() {
+        BookManager bookManager = new BookManager();
         Scanner scanner = new Scanner(System.in);
-        int command;
+        String command;
         int bookId;
         while (true) {
-            System.out.println("Welcome member");
-            System.out.println("1: borrowBook");
-            System.out.println("2: returnBook");
-            System.out.println("3: List books");
-            System.out.println("0: exit");
-            System.out.print("What would you like to do today? ");
-            command = Integer.parseInt(scanner.nextLine());
+            System.out.println("Hello Member");
+            System.out.print("Please choose and option " +
+                    "(borrowBook, returnBook, listBooks, exit): ");
+            command = scanner.nextLine();
             switch (command) {
-                case 1:
+                case "borrowBook":
                     System.out.print("Enter book ID to checkout: ");
                     bookId = Integer.parseInt(scanner.nextLine());
                     bookManager.borrowBook(bookId);
                     break;
-                case 2:
+                case "returnBook":
                     System.out.print("Enter book ID to return: ");
                     bookId = Integer.parseInt(scanner.nextLine());
                     bookManager.returnBook(bookId);
                     break;
-                case 3:
+                case "listBooks":
                     bookManager.listBooks();
                     break;
-                case 0:
+                case "exit":
                     scanner.close();
                     System.out.println("Thank you for using Adaptive Library Management System!");
-                    return;
-
+                    System.exit(0);
                 default:
                     System.out.println("Unknown command.");
             }

@@ -1,6 +1,6 @@
 package AdaptiveLibraryManagementSystem;
 
-public class User {
+abstract class User {
     protected int userID;
     protected String name;
 
@@ -9,30 +9,55 @@ public class User {
         this.name = name;
     }
 
-    public void searchBook(String searchString) {
-    }
-
-    class Member extends User {
+    class Member extends User implements Transactions{
         public Member(int userID, String name) {
             super(userID, name);
         }
 
-        public void borrowBook() {
+        @Override
+        public void borrowBook(int bookId) {
+
         }
 
-        public void returnBook() {
+        @Override
+        public void returnBook(int bookId) {
+
+        }
+
+        @Override
+        public void search(String searchField, String searchString) {
+
         }
     }
 
-    class Admin extends User {
+    class Admin extends User implements AdminTransactions {
         public Admin(int userID, String name) {
             super(userID, name);
         }
 
-        public void addBook() {
+        @Override
+        public void addBook(String Title, String Author) {
+
         }
 
-        public void removeBook() {
+        @Override
+        public void removeBook(int bookId) {
+
+        }
+
+        @Override
+        public void addMember(String memberName) {
+
+        }
+
+        @Override
+        public void removeMember(int memberId) {
+
+        }
+
+        @Override
+        public void search(String searchField, String searchString) {
+
         }
     }
 }
