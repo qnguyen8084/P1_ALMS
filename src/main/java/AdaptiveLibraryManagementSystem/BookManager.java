@@ -7,16 +7,13 @@ public class BookManager implements BookDBTransactions{
     @Override
     public void addBook(String title, String author) {
         String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, title);
             stmt.setString(2, author);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -30,8 +27,6 @@ public class BookManager implements BookDBTransactions{
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -50,23 +45,18 @@ public class BookManager implements BookDBTransactions{
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
     @Override
     public void borrowBook(int bookId) {
         String sql = "UPDATE books SET available = 0 WHERE id = ?";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, bookId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
     @Override
@@ -79,8 +69,6 @@ public class BookManager implements BookDBTransactions{
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 

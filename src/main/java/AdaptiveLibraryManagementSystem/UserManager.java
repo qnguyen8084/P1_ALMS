@@ -14,8 +14,6 @@ public class UserManager implements MemberDBTransactions{
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -29,8 +27,6 @@ public class UserManager implements MemberDBTransactions{
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -45,7 +41,7 @@ public class UserManager implements MemberDBTransactions{
                 System.out.println("ID: " + rs.getInt("id") +
                         ", Name: " + rs.getString("name"));
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

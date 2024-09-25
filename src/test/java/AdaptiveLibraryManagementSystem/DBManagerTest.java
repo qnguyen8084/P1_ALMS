@@ -16,6 +16,6 @@ class DBManagerTest {
 
     @org.junit.jupiter.api.Test
     void initializeDatabase() {
-        DBManager.initializeDatabase();
+        new DBManager();
     }
 }

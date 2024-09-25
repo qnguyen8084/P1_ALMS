@@ -1,43 +1,42 @@
 package AdaptiveLibraryManagementSystem;
 // imported libraries needed to interact with SQLite database
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 // Definition of DBManager
 public class DBManager {
     // Declare and initialize private
     private static final String URL = "jdbc:sqlite:myLibrary.db";
 
-    public static Connection connect() throws ClassNotFoundException, SQLException {
-        Connection conn = DriverManager.getConnection(URL);
-        System.out.println(conn.getMetaData().getDriverName());
-
-        return conn;
+    public DBManager() {
+        createTables();
     }
 
-    public static void initializeDatabase() {
-        String booksTable = "CREATE TABLE IF NOT EXISTS books (" +
+    private void createTables() {
+        String createBooksTable = "CREATE TABLE IF NOT EXISTS books(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT NOT NULL," +
                 "author TEXT NOT NULL," +
-                "isAvailable INTEGER NOT NULL DEFAULT 1);";
-
-        String usersTable = "CREATE TABLE IF NOT EXISTS users (" +
+                "isAvailable BOOLEAN NOT NULL)";
+        String createMembersTable = "CREATE TABLE IF NOT EXISTS members(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT NOT NULL);";
-
-        Connection dbConnection;
-        try {
-            dbConnection = connect();
-            Statement stmt = dbConnection.createStatement();
-            stmt.execute(booksTable);
-            stmt.execute(usersTable);
+                "name TEXT NOT NULL)";
+        String createCheckoutTable = "CREATE TABLE IF NOT EXISTS checkout(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "bookId INTEGER NOT NULL," +
+                "memberId INTEGER NOT NULL," +
+                "FOREIGN KEY (bookId) REFERENCES books(id)," +
+                "FOREIGN KEY (memberId) REFERENCES members(id))";
+        try(Connection conn = DriverManager.getConnection(URL);
+        Statement stmt = conn.createStatement()){
+            stmt.execute(createBooksTable);
+            stmt.execute(createMembersTable);
+            stmt.execute(createCheckoutTable);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static Connection connect() throws SQLException {
+        return DriverManager.getConnection(URL);
     }
 }
