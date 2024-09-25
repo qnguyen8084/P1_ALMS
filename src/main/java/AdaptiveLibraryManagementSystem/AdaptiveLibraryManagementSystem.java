@@ -5,13 +5,15 @@ Lab01 - Priority Queue
 9/9/24
 Main.java
 6
-TODO: Error message when checking out book that is unavailable
-TODO: User should have table joined with checked out books
-TODO: Clean up interactive console code
-TODO: Attach console interface to user and db interface
-TODO: Comment all code
-TODO: Create good documentation
-TODO: Create Unit Tests
+TODO: Implement command design pattern for requests from user and admin
+TODO: Implement builder for creation of books
+TODO: Implement adapter to interface with SQLite interface (Goal is to pass objects around)
+TODO: Model of MVC paradigm?
+TODO: Implement method for disaster recovery or data corruption of database
+TODO: Create unit tests
+TODO: Comment Code
+TODO: Write documentation. Design patterns used and why. The benefits.
+TODO: Design patterns MVC model, command, adapter, strategy?, state
 
  */
 
