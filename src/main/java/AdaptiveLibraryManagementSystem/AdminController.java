@@ -2,30 +2,31 @@ package AdaptiveLibraryManagementSystem;
 
 import java.util.Scanner;
 
-public class AdminController implements AdminTransactions {
+public class AdminController{
     UserManager userManager = new UserManager();
     BookManager bookManager = new BookManager();
     Scanner scanner = new Scanner(System.in);
+    Admin admin = new Admin("admin");
 
     public AdminController(String command) {
         switch (command) {
             case "addBook":
-                addBook();
+                admin.addBook();
                 break;
             case "removeBook":
-                removeBook();
+                admin.removeBook();
                 break;
             case "listBooks":
-                bookManager.listBooks();
+                admin.listBooks();
                 break;
             case "addMember":
-                addMember();
+                admin.addMember();
                 break;
             case "removeMember":
-                removeMember();
+                admin.removeMember();
                 break;
             case "listMembers":
-                userManager.listUsers();
+                admin.listUsers();
                 break;
             case "exit":
                 scanner.close();
@@ -37,40 +38,4 @@ public class AdminController implements AdminTransactions {
         }
     }
 
-    @Override
-    public void addBook() {
-        System.out.print("Enter title: ");
-        String title = scanner.nextLine();
-        System.out.print("Enter author: ");
-        String author = scanner.nextLine();
-        BookManager.addBook(title, author);
-    }
-
-    @Override
-    public void removeBook() {
-        System.out.print("Enter book ID: ");
-        int bookId = Integer.parseInt(scanner.nextLine());
-        BookManager.removeBook(bookId);
-
-    }
-
-    @Override
-    public void addMember() {
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
-        userManager.addMember(name);
-
-    }
-
-    @Override
-    public void removeMember() {
-        System.out.print("Enter member ID: ");
-        int memberId = Integer.parseInt(scanner.nextLine());
-        userManager.removeMember(memberId);
-
-    }
-
-    @Override
-    public void search(String searchField, String searchString) {
-    }
 }

@@ -2,9 +2,10 @@ package AdaptiveLibraryManagementSystem;
 
 import java.sql.*;
 
-public class BookManager implements DBTransactions{
+public class BookManager implements BookDBTransactions{
 
-    public static void addBook(String title, String author) {
+    @Override
+    public void addBook(String title, String author) {
         String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
         try {
             Connection conn = DBManager.connect();
@@ -19,7 +20,8 @@ public class BookManager implements DBTransactions{
         }
     }
 
-    public static void removeBook(int bookId) {
+    @Override
+    public void removeBook(int bookId) {
         String sql = "DELETE FROM BOOKS WHERE ID = (?)";
         try {
             Connection conn = DBManager.connect();
@@ -33,6 +35,7 @@ public class BookManager implements DBTransactions{
         }
     }
 
+    @Override
     public void listBooks() {
         String sql = "SELECT * FROM books";
         try {
