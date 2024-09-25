@@ -1,18 +1,19 @@
 package AdaptiveLibraryManagementSystem;
-
+// imported libraries needed to interact with SQLite database
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// Definition of DBManager
 public class DBManager {
+    // Declare and initialize private
     private static final String URL = "jdbc:sqlite:myLibrary.db";
 
     public static Connection connect() throws ClassNotFoundException, SQLException {
-        //Class.forName("org.sqlite.JDBC");
         Connection conn = DriverManager.getConnection(URL);
         System.out.println(conn.getMetaData().getDriverName());
-        // System.out.println("\u001B[34m" + "You have successfully connected to SQLite database" + "\u001B[0m");
+
         return conn;
     }
 
@@ -21,7 +22,7 @@ public class DBManager {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT NOT NULL," +
                 "author TEXT NOT NULL," +
-                "available INTEGER NOT NULL DEFAULT 1);";
+                "isAvailable INTEGER NOT NULL DEFAULT 1);";
 
         String usersTable = "CREATE TABLE IF NOT EXISTS users (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -33,13 +34,6 @@ public class DBManager {
             Statement stmt = dbConnection.createStatement();
             stmt.execute(booksTable);
             stmt.execute(usersTable);
-            /*
-            System.out.println("""
-                    \u001B[34mLibrary database has successfully been initialized
-
-                    \u001B[0m""");
-
-             */
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {

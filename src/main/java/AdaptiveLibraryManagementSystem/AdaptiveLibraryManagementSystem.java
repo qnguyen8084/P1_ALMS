@@ -5,7 +5,6 @@ Lab01 - Priority Queue
 9/9/24
 Main.java
 
-TODO: Decouple console into layers
 TODO: Bring more code up to Driver/Top level
 TODO: Implement command design pattern for requests from user and admin
 TODO: Implement builder for creation of books
