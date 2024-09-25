@@ -2,8 +2,9 @@ package AdaptiveLibraryManagementSystem;
 
 import java.sql.*;
 
-public class UserManager {
+public class UserManager implements MemberDBTransactions{
 
+    @Override
     public void addMember(String name) {
         String sql = "INSERT INTO users (name) VALUES (?)";
         try {
@@ -18,6 +19,7 @@ public class UserManager {
         }
     }
 
+    @Override
     public void removeMember(int memberId) {
         String sql = "DELETE FROM USERS WHERE ID = (?)";
         try {
@@ -32,6 +34,7 @@ public class UserManager {
         }
     }
 
+    @Override
     public void listUsers() {
         String sql = "SELECT * FROM users";
         try {
@@ -46,4 +49,9 @@ public class UserManager {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void search(String searchField, String searchString) {
+    }
+
 }

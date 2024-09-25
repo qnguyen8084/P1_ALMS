@@ -11,15 +11,15 @@ public class InteractiveConsole implements Console {
         // Switch statement to evaluate result from command
         switch (command) {
             // If command == "admin" start administrative console
-            case "admin": {
+            case "admin":
                 adminConsole();
-            }
             // If command is a name
-            case "member": {
+            case "member":
                 memberConsole();
-            }
+            case "exit":
+                System.exit(0);
             default:
-                throw new IllegalStateException("Unexpected value: " + command);
+                System.out.println(command + " is not a valid option");
         }
     }
 
@@ -28,7 +28,7 @@ public class InteractiveConsole implements Console {
         Scanner scanner = new Scanner(System.in);
         String command;
         System.out.println("Welcome to the Adaptive Library Management System!");
-        System.out.print("Login as: (admin, member)? ");
+        System.out.print("Login as: (admin, member, exit)? ");
         command = scanner.nextLine();
         return command;
     }
@@ -53,7 +53,7 @@ public class InteractiveConsole implements Console {
             System.out.println("Hello Member");
             System.out.print("Please choose and option " +
                     "(borrowBook, returnBook, listBooks, exit): ");
-            new Controller(scanner.nextLine());
+            new UserController(scanner.nextLine());
         }
     }
 }
