@@ -9,7 +9,7 @@ abstract class UserModel {
         this.name = name;
     }
 
-    class Member extends UserModel implements Transactions{
+    class Member extends UserModel implements DBTransactions{
         public Member(int userID, String name) {
             super(userID, name);
         }
@@ -30,7 +30,7 @@ abstract class UserModel {
         }
     }
 
-    class Admin extends UserModel implements AdminTransactions {
+    class Admin extends UserModel implements AdminDBTransactions {
         public Admin(int userID, String name) {
             super(userID, name);
         }

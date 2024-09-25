@@ -25,6 +25,7 @@ public class AdaptiveLibraryManagementSystem {
         System.out.println("Hello and welcome to Adaptive Library Management System!");
         // Initialize Database for persistent storage.
         DBManager.initializeDatabase();
+        // Start user interface, cli
         new InteractiveConsole();
 
 

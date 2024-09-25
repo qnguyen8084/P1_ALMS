@@ -1,16 +1,29 @@
 package AdaptiveLibraryManagementSystem;
 
 interface Transactions {
-    void borrowBook(int bookId);
-    void returnBook(int bookId);
+    void borrowBook();
+    void returnBook();
     void search(String searchField, String searchString);
 }
 
 interface AdminTransactions {
-    void addBook(String Title, String Author);
-    void removeBook(int bookId);
-    void addMember(String memberName);
-    void removeMember(int memberId);
+    void addBook();
+    void removeBook();
+    void addMember();
+    void removeMember();
     void search(String searchField, String searchString);
 }
 
+interface DBTransactions {
+  void borrowBook(int bookId);
+  void returnBook(int bookId);
+  void search(String searchField, String searchString);
+}
+
+interface AdminDBTransactions {
+    void addMember(String name);
+    void removeMember(int memberId);
+    void addBook(String title, String author);
+    void removeBook(int bookId);
+    void search(String searchField, String searchString);
+}

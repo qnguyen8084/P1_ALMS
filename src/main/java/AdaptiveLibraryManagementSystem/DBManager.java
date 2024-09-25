@@ -9,10 +9,10 @@ public class DBManager {
     private static final String URL = "jdbc:sqlite:myLibrary.db";
 
     public static Connection connect() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
+        //Class.forName("org.sqlite.JDBC");
         Connection conn = DriverManager.getConnection(URL);
         System.out.println(conn.getMetaData().getDriverName());
-        System.out.println("\u001B[34m" + "You have successfully connected to SQLite database" + "\u001B[0m");
+        // System.out.println("\u001B[34m" + "You have successfully connected to SQLite database" + "\u001B[0m");
         return conn;
     }
 

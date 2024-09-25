@@ -2,7 +2,7 @@ package AdaptiveLibraryManagementSystem;
 
 import java.sql.*;
 
-public class BookManager implements Transactions{
+public class BookManager implements DBTransactions{
 
     public static void addBook(String title, String author) {
         String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
