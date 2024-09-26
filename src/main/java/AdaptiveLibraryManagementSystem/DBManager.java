@@ -3,7 +3,7 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 
 // Definition of DBManager
-public class DBManager{
+public class DBManager implements DBTransactions{
     // Declare and initialize private
     private static final String URL = "jdbc:sqlite:myLibrary.db";
 
@@ -40,4 +40,122 @@ public class DBManager{
         return DriverManager.getConnection(URL);
     }
 
+    @Override
+    public void addMember(String name) {
+        String sql = "INSERT INTO members (name) VALUES (?)";
+        try {
+            Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, name);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void removeMember(int memberId) {
+        String sql = "DELETE FROM members WHERE ID = (?)";
+        try {
+            Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, memberId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void listMembers() {
+        String sql = "SELECT * FROM members";
+        try {
+            Connection conn = DBManager.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        ", Name: " + rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void addBook(String title, String author) {
+        String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, title);
+            stmt.setString(2, author);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void removeBook(int bookId) {
+        String sql = "DELETE FROM BOOKS WHERE ID = (?)";
+        try {
+            Connection conn = DBManager.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, bookId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void listBooks() {
+        String sql = "SELECT * FROM books";
+        try {
+            Connection conn = DBManager.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        ", Title: " + rs.getString("title") +
+                        ", Author: " + rs.getString("author") +
+                        ", Available: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void borrowBook(int bookId) {
+        String sql = "UPDATE books SET isAvailable = 0 WHERE id = ?";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, bookId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void returnBook(int bookId) {
+        String sql = "UPDATE books SET isAvailable = 1 WHERE id = ?";
+        try {
+            Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, bookId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void listLoans() {
+    }
+
+    @Override
+    public void search(String searchField, String searchString) {
+    }
 }

@@ -1,7 +1,7 @@
 package AdaptiveLibraryManagementSystem;
 
 public class AdminController {
-    Admin admin = new Admin("admin");
+    ConsoleInterface admin = new ConsoleInterface();
     public AdminController(String command) {
         switch (command) {
             case "addBook":
@@ -21,6 +21,17 @@ public class AdminController {
                 break;
             case "listMembers":
                 admin.listMembers();
+                break;
+            case "loanBook":
+                admin.borrowBook();
+                break;
+            case "checkInBook":
+                admin.returnBook();
+                break;
+            case "listLoans":
+                admin.listLoans();
+                break;
+            case "search":
                 break;
             case "exit":
                 System.out.println("Thank you for using Adaptive Library Management System!");
