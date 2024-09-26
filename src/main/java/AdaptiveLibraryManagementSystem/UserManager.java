@@ -6,7 +6,7 @@ public class UserManager implements MemberDBTransactions{
 
     @Override
     public void addMember(String name) {
-        String sql = "INSERT INTO users (name) VALUES (?)";
+        String sql = "INSERT INTO members (name) VALUES (?)";
         try {
             Connection conn = DBManager.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -19,7 +19,7 @@ public class UserManager implements MemberDBTransactions{
 
     @Override
     public void removeMember(int memberId) {
-        String sql = "DELETE FROM USERS WHERE ID = (?)";
+        String sql = "DELETE FROM members WHERE ID = (?)";
         try {
             Connection conn = DBManager.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -32,7 +32,7 @@ public class UserManager implements MemberDBTransactions{
 
     @Override
     public void listMembers() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM members";
         try {
             Connection conn = DBManager.connect();
             Statement stmt = conn.createStatement();
@@ -44,10 +44,6 @@ public class UserManager implements MemberDBTransactions{
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public void search(String searchField, String searchString) {
     }
 
 }

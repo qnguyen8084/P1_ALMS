@@ -16,7 +16,7 @@ public class DBManager{
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT NOT NULL," +
                 "author TEXT NOT NULL," +
-                "isAvailable BOOLEAN NOT NULL)";
+                "isAvailable INTEGER NOT NULL DEFAULT 1)";
         String createMembersTable = "CREATE TABLE IF NOT EXISTS members(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL)";

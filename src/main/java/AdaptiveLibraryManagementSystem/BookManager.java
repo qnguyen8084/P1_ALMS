@@ -41,7 +41,7 @@ public class BookManager implements BookDBTransactions{
                 System.out.println("ID: " + rs.getInt("id") +
                         ", Title: " + rs.getString("title") +
                         ", Author: " + rs.getString("author") +
-                        ", Available: " + (rs.getInt("available") == 1 ? "Yes" : "No"));
+                        ", Available: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -50,7 +50,7 @@ public class BookManager implements BookDBTransactions{
 
     @Override
     public void borrowBook(int bookId) {
-        String sql = "UPDATE books SET available = 0 WHERE id = ?";
+        String sql = "UPDATE books SET isAvailable = 0 WHERE id = ?";
         try (Connection conn = DBManager.connect();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, bookId);
@@ -61,7 +61,7 @@ public class BookManager implements BookDBTransactions{
     }
     @Override
     public void returnBook(int bookId) {
-        String sql = "UPDATE books SET available = 1 WHERE id = ?";
+        String sql = "UPDATE books SET isAvailable = 1 WHERE id = ?";
         try {
             Connection conn = DBManager.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -70,11 +70,6 @@ public class BookManager implements BookDBTransactions{
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public void search(String searchField, String searchString) {
-
     }
 }
 

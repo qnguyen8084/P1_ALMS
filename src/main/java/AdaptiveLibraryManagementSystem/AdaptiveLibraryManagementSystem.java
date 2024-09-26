@@ -19,6 +19,7 @@ TODO: Implement loanBook with loan table interaction
 TODO: Implement method to list members with loaned books
 TODO: Remove interface implementation out of Member class and into new class
 TODO: Take builder or factory approach to customize ui dependent on user admin or user
+TODO: Add test case for empty string in user input
 
  */
 

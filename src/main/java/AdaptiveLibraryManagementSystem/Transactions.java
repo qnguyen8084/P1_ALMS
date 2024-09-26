@@ -23,14 +23,12 @@ interface BookDBTransactions {
     void addBook(String title, String author);
     void removeBook(int bookId);
     void listBooks();
-    void search(String searchField, String searchString);
 }
 
 interface MemberDBTransactions {
     void addMember(String name);
     void removeMember(int memberId);
     void listMembers();
-    void search(String searchField, String searchString);
 }
 
 interface DBTransactions {
