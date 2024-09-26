@@ -91,8 +91,8 @@ class Admin extends User implements AdminTransactions {
     }
 
     @Override
-    public void listUsers() {
-        userManager.listUsers();
+    public void listMembers() {
+        userManager.listMembers();
     }
 
     @Override

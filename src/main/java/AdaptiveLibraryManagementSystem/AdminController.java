@@ -20,7 +20,7 @@ public class AdminController {
                 admin.removeMember();
                 break;
             case "listMembers":
-                admin.listUsers();
+                admin.listMembers();
                 break;
             case "exit":
                 System.out.println("Thank you for using Adaptive Library Management System!");

@@ -1,15 +1,14 @@
 package AdaptiveLibraryManagementSystem;
 
 public class Book {
-    private String title;
-    private String author;
-    private boolean isAvailable;
     private int bookId;
+    private final String title;
+    private final String author;
+    private boolean isAvailable = true;
 
-    public Book(String title, String author, boolean isAvailable) {
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
-        this.isAvailable = isAvailable;
     }
 
     public Book(int bookId, String title, String author, boolean isAvailable) {
@@ -23,6 +22,10 @@ public class Book {
         return title;
     }
 
+    public int getBookId() {
+        return bookId;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -31,15 +34,4 @@ public class Book {
         return isAvailable;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
 }
