@@ -45,9 +45,9 @@ public class DBManager implements DBTransactions{
         String sql = "INSERT INTO members (name) VALUES (?)";
         try {
             Connection conn = DBManager.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, name);
-            pstmt.executeUpdate();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, name);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -58,9 +58,9 @@ public class DBManager implements DBTransactions{
         String sql = "DELETE FROM members WHERE ID = (?)";
         try {
             Connection conn = DBManager.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, memberId);
-            pstmt.executeUpdate();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, memberId);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
