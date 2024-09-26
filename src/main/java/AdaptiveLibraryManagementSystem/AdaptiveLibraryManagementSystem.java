@@ -8,9 +8,6 @@ Main.java
 TODO: Add exception handling where needed [...]
 TODO: Comment Code
 TODO: Add documentation
-TODO: Consolidate UserManager and BookManager into DB Manager
-TODO: DBManager methods will be updated to take classes
-TODO: Simplify AdaptiveLibraryManagementSystem.UserManager.Member model by removing User Class and Admin class.
 TODO: Create necessary interfaces
 TODO: Add command design pattern
 TODO: Use strategy pattern

@@ -3,8 +3,7 @@ package AdaptiveLibraryManagementSystem;
 import java.util.Scanner;
 
 public class ConsoleInterface implements AdminTransactions{
-    BookManager bookManager = new BookManager();
-    UserManager userManager = new UserManager();
+    DBManager db = new DBManager();
     Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -13,38 +12,38 @@ public class ConsoleInterface implements AdminTransactions{
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
-        bookManager.addBook(title, author);
+        db.addBook(title, author);
     }
 
     @Override
     public void removeBook() {
         System.out.print("Enter book ID: ");
         int bookId = Integer.parseInt(scanner.nextLine());
-        bookManager.removeBook(bookId);
+        db.removeBook(bookId);
     }
 
     @Override
      public void listBooks() {
-        bookManager.listBooks();
+        db.listBooks();
     }
 
     @Override
     public void addMember() {
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
-        userManager.addMember(name);
+        db.addMember(name);
     }
 
     @Override
     public void removeMember() {
         System.out.print("Enter member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
-        userManager.removeMember(memberId);
+        db.removeMember(memberId);
     }
 
     @Override
     public void listMembers() {
-        userManager.listMembers();
+        db.listMembers();
     }
 
     @Override
@@ -52,7 +51,7 @@ public class ConsoleInterface implements AdminTransactions{
         int bookId;
         System.out.print("Enter book ID to checkout: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        bookManager.borrowBook(bookId);
+        db.borrowBook(bookId);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class ConsoleInterface implements AdminTransactions{
         int bookId;
         System.out.print("Enter book ID to return: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        bookManager.returnBook(bookId);
+        db.returnBook(bookId);
     }
 
     @Override

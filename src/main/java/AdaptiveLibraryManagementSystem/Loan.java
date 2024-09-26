@@ -1,7 +1,7 @@
 package AdaptiveLibraryManagementSystem;
 
 public class Loan {
-    private final int id;
+    private int id;
     private final int bookId;
     private final int memberId;
 

@@ -1,19 +1,5 @@
 package AdaptiveLibraryManagementSystem;
 
-interface BookDBTransactions {
-    void borrowBook(int bookId);
-    void returnBook(int bookId);
-    void addBook(String title, String author);
-    void removeBook(int bookId);
-    void listBooks();
-}
-
-interface MemberDBTransactions {
-    void addMember(String name);
-    void removeMember(int memberId);
-    void listMembers();
-}
-
 interface AdminTransactions {
     void addBook();
     void removeBook();
@@ -28,6 +14,20 @@ interface AdminTransactions {
 }
 
 interface DBTransactions {
+    void addMember(String name);
+    void removeMember(int memberId);
+    void listMembers();
+    void addBook(String author, String title);
+    void removeBook(int bookId);
+    void listBooks();
+    void borrowBook(int bookId);
+    void returnBook(int bookId);
+    void listLoans();
+    void search(String searchField, String searchString);
+}
+
+/*
+interface ADBTransactions {
     void addMember(Member member);
     void removeMember(Member member);
     void listMembers();
@@ -36,5 +36,6 @@ interface DBTransactions {
     void listBooks();
     void borrowBook(Member member, Book book);
     void returnBook(Member member, Book book);
+    void listLoans();
     void search(String searchField, String searchString);
-}
+}*/
