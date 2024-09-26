@@ -34,12 +34,12 @@ interface MemberDBTransactions {
 interface ConsoleTransactions {
     void addBook();
     void removeBook();
+    void listBooks();
     void addMember();
     void removeMember();
+    void listMembers();
     void borrowBook();
     void returnBook();
-    void listMembers();
-    void listBooks();
     void listLoans();
     void search(String searchField, String searchString);
 }

@@ -24,6 +24,11 @@ public class ConsoleInterface implements ConsoleTransactions{
     }
 
     @Override
+     public void listBooks() {
+        bookManager.listBooks();
+    }
+
+    @Override
     public void addMember() {
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
@@ -35,6 +40,11 @@ public class ConsoleInterface implements ConsoleTransactions{
         System.out.print("Enter member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
         userManager.removeMember(memberId);
+    }
+
+    @Override
+    public void listMembers() {
+        userManager.listMembers();
     }
 
     @Override
@@ -51,16 +61,6 @@ public class ConsoleInterface implements ConsoleTransactions{
         System.out.print("Enter book ID to return: ");
         bookId = Integer.parseInt(scanner.nextLine());
         bookManager.returnBook(bookId);
-    }
-
-    @Override
-    public void listMembers() {
-        userManager.listMembers();
-    }
-
-    @Override
-    public void listBooks() {
-        bookManager.listBooks();
     }
 
     @Override
