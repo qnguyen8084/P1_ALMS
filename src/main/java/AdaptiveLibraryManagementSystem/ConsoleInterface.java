@@ -2,7 +2,7 @@ package AdaptiveLibraryManagementSystem;
 
 import java.util.Scanner;
 
-public class ConsoleInterface implements ConsoleTransactions{
+public class ConsoleInterface implements AdminTransactions{
     BookManager bookManager = new BookManager();
     UserManager userManager = new UserManager();
     Scanner scanner = new Scanner(System.in);

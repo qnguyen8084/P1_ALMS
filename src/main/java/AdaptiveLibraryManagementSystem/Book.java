@@ -34,4 +34,8 @@ public class Book {
         return isAvailable;
     }
 
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
 }
