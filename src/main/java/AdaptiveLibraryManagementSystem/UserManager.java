@@ -31,7 +31,7 @@ public class UserManager implements MemberDBTransactions{
     }
 
     @Override
-    public void listUsers() {
+    public void listMembers() {
         String sql = "SELECT * FROM users";
         try {
             Connection conn = DBManager.connect();

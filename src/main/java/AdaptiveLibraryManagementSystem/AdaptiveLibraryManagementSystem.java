@@ -5,17 +5,20 @@ Lab01 - Priority Queue
 9/9/24
 Main.java
 
-TODO: Bring more code up to Driver/Top level
-TODO: Implement command design pattern for requests from user and admin
-TODO: Implement builder for creation of books
-TODO: Implement adapter to interface with SQLite interface (Goal is to pass objects around)
-TODO: Model of MVC paradigm?
-TODO: Implement method for disaster recovery or data corruption of database
-TODO: Create unit tests
+TODO: Add exception handling where needed [...]
 TODO: Comment Code
-TODO: Write documentation. Design patterns used and why. The benefits.
-TODO: Design patterns MVC model, command, adapter, strategy?, state
-TODO: Add user registration if user does not exist to
+TODO: Add documentation
+TODO: Consolidate UserManager and BookManager into DB Manager
+TODO: DBManager methods will be updated to take classes
+TODO: Simplify Member model by removing User Class and Admin class.
+TODO: Create necessary interfaces
+TODO: Add command design pattern
+TODO: Use strategy pattern
+TODO: Implement Search methods
+TODO: Implement loanBook with loan table interaction
+TODO: Implement method to list members with loaned books
+TODO: Remove interface implementation out of Member class and into new class
+TODO: Take builder or factory approach to customize ui dependent on user admin or user
 
  */
 

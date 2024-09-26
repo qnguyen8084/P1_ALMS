@@ -3,7 +3,7 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 
 // Definition of DBManager
-public class DBManager {
+public class DBManager{
     // Declare and initialize private
     private static final String URL = "jdbc:sqlite:myLibrary.db";
 
@@ -20,7 +20,7 @@ public class DBManager {
         String createMembersTable = "CREATE TABLE IF NOT EXISTS members(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL)";
-        String createCheckoutTable = "CREATE TABLE IF NOT EXISTS checkout(" +
+        String createCheckoutTable = "CREATE TABLE IF NOT EXISTS loans(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "bookId INTEGER NOT NULL," +
                 "memberId INTEGER NOT NULL," +
@@ -39,4 +39,5 @@ public class DBManager {
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL);
     }
+
 }
