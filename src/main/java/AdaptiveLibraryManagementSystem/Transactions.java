@@ -31,6 +31,19 @@ interface MemberDBTransactions {
     void listMembers();
 }
 
+interface ConsoleTransactions {
+    void addBook();
+    void removeBook();
+    void addMember();
+    void removeMember();
+    void borrowBook();
+    void returnBook();
+    void listMembers();
+    void listBooks();
+    void listLoans();
+    void search(String searchField, String searchString);
+}
+
 interface DBTransactions {
     void addMember(Member member);
     void removeMember(Member member);
