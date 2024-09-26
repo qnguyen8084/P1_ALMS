@@ -2,8 +2,8 @@ package AdaptiveLibraryManagementSystem;
 
 import java.util.Scanner;
 
-public class ConsoleInterface implements AdminTransactions{
-    DBManager db = new DBManager();
+public class ConsoleInterface implements Transactions{
+    DBConsoleAdapter adaptor = new DBConsoleAdapter();
     Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -12,58 +12,65 @@ public class ConsoleInterface implements AdminTransactions{
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
-        db.addBook(title, author);
+        adaptor.addBook(new Book(title, author));
     }
 
     @Override
     public void removeBook() {
         System.out.print("Enter book ID: ");
         int bookId = Integer.parseInt(scanner.nextLine());
-        db.removeBook(bookId);
+        adaptor.removeBook(bookId);
     }
 
     @Override
      public void listBooks() {
-        db.listBooks();
+        adaptor.listBooks();
     }
 
     @Override
     public void addMember() {
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
-        db.addMember(name);
+        Member member = new Member(name);
+        adaptor.addMember(member);
     }
 
     @Override
     public void removeMember() {
         System.out.print("Enter member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
-        db.removeMember(memberId);
+        adaptor.removeMember(memberId);
     }
 
     @Override
     public void listMembers() {
-        db.listMembers();
+        adaptor.listMembers();
     }
 
     @Override
     public void borrowBook() {
         int bookId;
+        System.out.print("Enter memberId of patron: ");
+        int memberId = Integer.parseInt(scanner.nextLine());
         System.out.print("Enter book ID to checkout: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        db.borrowBook(bookId);
+        adaptor.borrowBook(memberId, bookId);
     }
 
     @Override
     public void returnBook() {
         int bookId;
+        int memberId;
+        System.out.print("Enter memberID or patron: ");
+        memberId = Integer.parseInt(scanner.nextLine());
         System.out.print("Enter book ID to return: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        db.returnBook(bookId);
+        adaptor.returnBook(memberId, bookId);
     }
 
     @Override
     public void listLoans() {
+        adaptor.listLoans();
     }
 
     @Override

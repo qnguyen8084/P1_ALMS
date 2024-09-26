@@ -19,7 +19,7 @@ public class InteractiveConsole implements Console {
                     "(addBook, removeBook, listBooks,\n" +
                     "addMember, removeMember, listMembers,\n" +
                     "borrowBook, returnBook, listLoans, \n" +
-                    "search, exit)");
+                    "search, exit): ");
         new AdminController(scanner.nextLine());
         }
     }
