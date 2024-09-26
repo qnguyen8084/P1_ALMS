@@ -1,3 +1,5 @@
+package AdaptiveLibraryManagementSystem;
+
 public class Member {
     private int memberId;
     private final String name;
@@ -20,3 +22,4 @@ public class Member {
     }
 
 }
+

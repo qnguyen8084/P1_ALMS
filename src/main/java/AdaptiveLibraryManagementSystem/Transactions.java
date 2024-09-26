@@ -33,8 +33,8 @@ interface DBTransactions {
     void listMembers();
     void addBook(Book book);
     void removeBook(Book book);
-    void loanBook(Member member, Book book);
-    void returnBook(Member member, Book book);
     void listBooks();
+    void borrowBook(Member member, Book book);
+    void returnBook(Member member, Book book);
     void search(String searchField, String searchString);
 }
