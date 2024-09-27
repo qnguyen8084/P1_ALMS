@@ -1,3 +1,11 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * Transactions.java
+ * Sept 7, 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 interface _Transactions {

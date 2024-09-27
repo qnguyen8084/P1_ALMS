@@ -1,9 +1,17 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * DBManager.java
+ * Sept 7, 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 // imported libraries needed to interact with SQLite database
 import java.sql.*;
 
 // Definition of DBManager
-public class DBManager implements DBTransactions{
+public class DBManager implements DBTransactions {
 
     // Declare and initialize private static final String URL with location of myLibrary.db
     private static final String URL = "jdbc:sqlite:myLibrary.db";
@@ -15,7 +23,7 @@ public class DBManager implements DBTransactions{
     }
 
     // Definition of createTables method that creates 3 tables in our relational database
-    // for persistant storage.
+    // for persistent storage.
     private void createTables() {
 
         // Initialize a String variable createBooksTable with an SQL string to create
@@ -48,8 +56,8 @@ public class DBManager implements DBTransactions{
         // Statements are passed to try because I learned somewhere this will also
         // close conn connection after method is done with execution.
         // This try block will create the tables in the database if they don't exist
-        try(Connection conn = DriverManager.getConnection(URL);
-        Statement stmt = conn.createStatement()){
+        try (Connection conn = DriverManager.getConnection(URL);
+             Statement stmt = conn.createStatement()) {
             stmt.execute(createBooksTable);
             stmt.execute(createMembersTable);
             stmt.execute(createLoansTable);
@@ -147,6 +155,7 @@ public class DBManager implements DBTransactions{
             System.out.println(e.getMessage());
         }
     }
+
     @Override
     public void borrowBook(int memberId, int bookId) {
 
@@ -183,5 +192,13 @@ public class DBManager implements DBTransactions{
     }
 
     public void returnBook(int bookId) {
+        String sql = "UPDATE books SET isAvailable = 1 WHERE id =?";
+        try {
+            Connection conn = DBManager.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, bookId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,3 +1,11 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * DBConsoleAdapter.java
+ * Sept 7, 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 public class DBConsoleAdapter implements _Transactions{
@@ -54,8 +62,7 @@ public class DBConsoleAdapter implements _Transactions{
     @Override
     public void search(String searchField, String searchString) {
 
+
     }
-
-
 
 }

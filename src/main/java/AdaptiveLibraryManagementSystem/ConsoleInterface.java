@@ -1,11 +1,27 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * ConsoleInterface.java
+ * Sept 7, 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 import java.util.Scanner;
 
+/**
+ * ConsoleInterface is responsible for providing a user interface via the console
+ * for interacting with the database through various operations defined in the Transactions interface.
+ */
 public class ConsoleInterface implements Transactions{
     DBConsoleAdapter adaptor = new DBConsoleAdapter();
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Prompts the user to enter the title and author of a book via the console,
+     * and then adds the book to the database using the DBConsoleAdapter.
+     */
     @Override
     public void addBook() {
         System.out.print("Enter title: ");
@@ -15,6 +31,10 @@ public class ConsoleInterface implements Transactions{
         adaptor.addBook(new Book(title, author));
     }
 
+    /**
+     * Prompts the user to enter the book ID via the console and removes the book from the database
+     * using the DBConsoleAdapter.
+     */
     @Override
     public void removeBook() {
         System.out.print("Enter book ID: ");
