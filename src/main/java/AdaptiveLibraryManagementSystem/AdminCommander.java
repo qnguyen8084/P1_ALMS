@@ -45,10 +45,10 @@ public class AdminCommander {
             case "listMembers":
                 adminInterface.listMembers();
                 break;
-            case "loanBook":
+            case "borrowBook":
                 adminInterface.borrowBook();
                 break;
-            case "checkInBook":
+            case "returnBook":
                 adminInterface.returnBook();
                 break;
             case "listLoans":

@@ -98,8 +98,8 @@ public class DBManager implements DBOperations {
     public void listMembers() {
         String sql = "SELECT * FROM members";
         try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery(sql);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
                         ", Name: " + rs.getString("name"));
@@ -137,10 +137,9 @@ public class DBManager implements DBOperations {
     @Override
     public void listBooks() {
         String sql = "SELECT * FROM books";
-        try {
-            Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(sql);
+        try (Connection conn = DBManager.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
                         ", Title: " + rs.getString("title") +
@@ -172,8 +171,8 @@ public class DBManager implements DBOperations {
     public void listLoans() {
         String sql = "SELECT * FROM loans";
         try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery(sql);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
                         ", memberID: " + rs.getInt("memberId") +
@@ -190,13 +189,16 @@ public class DBManager implements DBOperations {
     }
 
     public boolean isBookAvailable(int bookId) {
-        String sql = "SELECT isAvailable FROM books WHERE id = ?";
+        String sql = "SELECT isAvailable FROM books WHERE id = " + bookId;
         try {
             Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, bookId);
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            return rs.getInt("isAvailable") == 1;
+            rs.next();
+            System.out.println("isAvailable: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
+            boolean isAvailable = rs.getInt("isAvailable") == 1;
+            conn.close();
+            return isAvailable;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -229,7 +231,7 @@ public class DBManager implements DBOperations {
     }
 
     public void removeLoan(int bookId, int memberId) {
-        String sql = "DELETE FROM loans (memberId, bookId) VALUES (?, ?)";
+        String sql = "DELETE FROM loans WHERE (memberId, bookId) = (?, ?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, memberId);
