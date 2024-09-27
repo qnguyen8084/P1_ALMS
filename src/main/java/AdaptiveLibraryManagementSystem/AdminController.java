@@ -9,7 +9,7 @@
 package AdaptiveLibraryManagementSystem;
 
 public class AdminController {
-    ConsoleInterface admin = new ConsoleInterface();
+    AdministratorInterface admin = new AdministratorInterface();
     public AdminController(String command) {
         switch (command) {
             case "addBook":
