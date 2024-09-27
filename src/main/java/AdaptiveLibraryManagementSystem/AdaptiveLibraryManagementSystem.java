@@ -40,29 +40,15 @@ TODO: Add test cases comments
         - Transactions
 TODO: Refactor to assignment specifications
 TODO: Complete and review documentation
-TODO: Implement checkin and checkout process
-    - borrowBook
-        - checkif book is availble
-        - if available proceed to
-        - set available to 0 and
-        - update loan table to link member with checkout book
-        - else give error
-    - returnBook
-        - update loan table
-        - update book to available
-    - listloans
 TODO: Implement search functions
     - User/Admin requests search by column then with specific keyword
     - searchable tables
     - members: id, name
     - books: id, title, author, isAvailable
     - loans: id, bookId, memberId
-
-
 TODO: Add history to allow recovery from data corruption or data loss.
 TODO: AdminCommander: case statement for search needs to be completed
 TODO: removing book that is none
-
 
 */
 
