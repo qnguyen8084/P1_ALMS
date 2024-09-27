@@ -8,13 +8,23 @@
 
 package AdaptiveLibraryManagementSystem;
 
+/**
+ This is the AdminCommander that acts an interface between the user and the Adaptive Library Management
+ System. It is responsible for evaluating the command input to decide what request to send to
+ the adminInterface.
+ */
 public class AdminCommander {
+
+    // This instantiates an AdministratorInterface class object
     private final AdministratorInterface adminInterface = new AdministratorInterface();
 
+    // This class is instantiated the constructor will begin the case statement.
     public AdminCommander(String command) {
         execute(command);
     }
 
+    // This case statement will be where the application logic makes the decision on which request to send
+    // to or call from adminInterface. Case statement cases are pretty self-explanatory.
     private void execute(String command) {
         switch (command) {
             case "addBook":
@@ -35,10 +45,10 @@ public class AdminCommander {
             case "listMembers":
                 adminInterface.listMembers();
                 break;
-            case "loanBook":
+            case "borrowBook":
                 adminInterface.borrowBook();
                 break;
-            case "checkInBook":
+            case "returnBook":
                 adminInterface.returnBook();
                 break;
             case "listLoans":
