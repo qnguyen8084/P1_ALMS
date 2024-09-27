@@ -8,8 +8,7 @@
 
 /*
 TODO: Comment code
-        - AdaptiveLibraryManagementSystem (Done)
-        - AdminCommander
+        - AdminCommander (Done)
         - Book
         - Console
         - ConsoleInterface
@@ -20,8 +19,6 @@ TODO: Comment code
         - Member
         - Transactions
 TODO: Add test cases
-        - AdaptiveLibraryManagementSystem (Done)
-        - AdminController
         - Book
         - Console
         - ConsoleInterface
@@ -32,8 +29,6 @@ TODO: Add test cases
         - Member
         - Transactions
 TODO: Add test cases comments
-        - AdaptiveLibraryManagementSystem (Done)
-        - AdminController
         - Book
         - Console
         - ConsoleInterface
@@ -63,7 +58,10 @@ TODO: Implement search functions
     - books: id, title, author, isAvailable
     - loans: id, bookId, memberId
 
+
 TODO: Add history to allow recovery from data corruption or data loss.
+TODO: AdminCommander: case statement for search needs to be completed
+
 
 */
 
