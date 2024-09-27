@@ -11,7 +11,7 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 
 // Definition of DBManager
-public class DBManager implements DBTransactions {
+public class DBManager implements DBOperations {
 
     // Declare and initialize private static final String URL with location of myLibrary.db
     private static final String URL = "jdbc:sqlite:myLibrary.db";
@@ -73,9 +73,8 @@ public class DBManager implements DBTransactions {
     @Override
     public void addMember(String name) {
         String sql = "INSERT INTO members (name) VALUES (?)";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, name);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,9 +85,8 @@ public class DBManager implements DBTransactions {
     @Override
     public void removeMember(int memberId) {
         String sql = "DELETE FROM members WHERE ID = (?)";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, memberId);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -99,9 +97,8 @@ public class DBManager implements DBTransactions {
     @Override
     public void listMembers() {
         String sql = "SELECT * FROM members";
-        try {
-            Connection conn = DBManager.connect();
-            Statement stmt = conn.createStatement();
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
@@ -128,9 +125,8 @@ public class DBManager implements DBTransactions {
     @Override
     public void removeBook(int bookId) {
         String sql = "DELETE FROM BOOKS WHERE ID = (?)";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, bookId);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -143,7 +139,7 @@ public class DBManager implements DBTransactions {
         String sql = "SELECT * FROM books";
         try {
             Connection conn = DBManager.connect();
-            Statement stmt = conn.createStatement();
+             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
@@ -158,47 +154,90 @@ public class DBManager implements DBTransactions {
 
     @Override
     public void borrowBook(int memberId, int bookId) {
-
-        String sql = "UPDATE books SET isAvailable = 0 WHERE id = ?";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        if (isBookAvailable(bookId)) {
+            setBookAvailability(0, bookId);
+            addLoan(bookId, memberId);
+        } else {
+            System.out.println("Book is not available!");
         }
     }
 
     @Override
     public void returnBook(int memberId, int bookId) {
-
-        String sql = "UPDATE books SET isAvailable = 1 WHERE id = ?";
-        try {
-            Connection conn = DBManager.connect();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        setBookAvailability(1, bookId);
+        removeLoan(bookId, memberId);
     }
 
     @Override
     public void listLoans() {
+        String sql = "SELECT * FROM loans";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        ", memberID: " + rs.getInt("memberId") +
+                        ", bookID: " + rs.getInt("bookId"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
     public void search(String searchField, String searchString) {
     }
 
-    public void returnBook(int bookId) {
-        String sql = "UPDATE books SET isAvailable = 1 WHERE id =?";
+    public boolean isBookAvailable(int bookId) {
+        String sql = "SELECT isAvailable FROM books WHERE id = ?";
         try {
             Connection conn = DBManager.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, bookId);
+            ResultSet rs = stmt.executeQuery(sql);
+            return rs.getInt("isAvailable") == 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    public void setBookAvailability(int availability, int bookId) {
+        String sql = "UPDATE books SET isAvailable = ? WHERE id = ?";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, availability);
+            stmt.setInt(2, bookId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void addLoan(int bookId, int memberId) {
+        String sql = "INSERT INTO loans (memberId, bookId) VALUES (?, ?)";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, memberId);
+            stmt.setInt(2, bookId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void removeLoan(int bookId, int memberId) {
+        String sql = "DELETE FROM loans (memberId, bookId) VALUES (?, ?)";
+        try (Connection conn = DBManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, memberId);
+            stmt.setInt(2, bookId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
+

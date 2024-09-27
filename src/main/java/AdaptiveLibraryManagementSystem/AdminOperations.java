@@ -34,7 +34,7 @@ interface AdminOperations {
     void search(String searchField, String searchString);
 }
 
-interface DBTransactions {
+interface DBOperations {
     void addMember(String name);
     void removeMember(int memberId);
     void listMembers();

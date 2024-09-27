@@ -61,6 +61,7 @@ TODO: Implement search functions
 
 TODO: Add history to allow recovery from data corruption or data loss.
 TODO: AdminCommander: case statement for search needs to be completed
+TODO: removing book that is none
 
 
 */
