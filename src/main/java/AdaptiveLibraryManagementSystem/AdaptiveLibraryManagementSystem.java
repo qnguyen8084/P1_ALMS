@@ -9,7 +9,7 @@
 /*
 TODO: Comment code
         - AdaptiveLibraryManagementSystem (Done)
-        - AdminController
+        - AdminCommander
         - Book
         - Console
         - ConsoleInterface
@@ -20,7 +20,19 @@ TODO: Comment code
         - Member
         - Transactions
 TODO: Add test cases
-        - AdaptiveLibraryManagementSystem
+        - AdaptiveLibraryManagementSystem (Done)
+        - AdminController
+        - Book
+        - Console
+        - ConsoleInterface
+        - DBConsoleAdapter
+        - DBManager
+        - InteractiveConsole
+        - Loan
+        - Member
+        - Transactions
+TODO: Add test cases comments
+        - AdaptiveLibraryManagementSystem (Done)
         - AdminController
         - Book
         - Console
@@ -68,20 +80,23 @@ public class AdaptiveLibraryManagementSystem {
     // It then instantiates an InteractiveConsole with new Interactive console to output prompts to the
     // user.
     public static void main(String[] args) {
+
         // Created a constant String for welcome message to encourage with readability.
         String WELCOME_MESSAGE = "Welcome to Adaptive Library Management System!";
+
         // Welcome message
         printMessage(WELCOME_MESSAGE);
+
         // Initialize Database for persistent storage.
         new DBManager();
+
         // Start user interface, cli
         new InteractiveConsole();
     }
 
-
     // Declared and defined printMessage function to help with readability.
-    private static void printMessage(String message) {
-        System.out.println("Welcome to Adaptive Library Management System!");
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 
 }

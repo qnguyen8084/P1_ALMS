@@ -8,36 +8,41 @@
 
 package AdaptiveLibraryManagementSystem;
 
-public class AdminController {
-    AdministratorInterface admin = new AdministratorInterface();
-    public AdminController(String command) {
+public class AdminCommander {
+    private final AdministratorInterface adminInterface = new AdministratorInterface();
+
+    public AdminCommander(String command) {
+        execute(command);
+    }
+
+    private void execute(String command) {
         switch (command) {
             case "addBook":
-                admin.addBook();
+                adminInterface.addBook();
                 break;
             case "removeBook":
-                admin.removeBook();
+                adminInterface.removeBook();
                 break;
             case "listBooks":
-                admin.listBooks();
+                adminInterface.listBooks();
                 break;
             case "addMember":
-                admin.addMember();
+                adminInterface.addMember();
                 break;
             case "removeMember":
-                admin.removeMember();
+                adminInterface.removeMember();
                 break;
             case "listMembers":
-                admin.listMembers();
+                adminInterface.listMembers();
                 break;
             case "loanBook":
-                admin.borrowBook();
+                adminInterface.borrowBook();
                 break;
             case "checkInBook":
-                admin.returnBook();
+                adminInterface.returnBook();
                 break;
             case "listLoans":
-                admin.listLoans();
+                adminInterface.listLoans();
                 break;
             case "search":
                 break;

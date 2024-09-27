@@ -19,6 +19,10 @@ public class InteractiveConsole implements Console {
         adminConsole();
     }
 
+    public InteractiveConsole(int test) {
+        return;
+    }
+
     @Override
     public void adminConsole() {
         Scanner scanner = new Scanner(System.in);
@@ -28,7 +32,7 @@ public class InteractiveConsole implements Console {
                     "addMember, removeMember, listMembers,\n" +
                     "borrowBook, returnBook, listLoans, \n" +
                     "search, exit): ");
-        new AdminController(scanner.nextLine());
+        new AdminCommander(scanner.nextLine());
         }
     }
 }
