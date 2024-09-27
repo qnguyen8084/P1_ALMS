@@ -8,7 +8,7 @@
 
 package AdaptiveLibraryManagementSystem;
 
-public class DBConsoleAdapter implements _Transactions{
+public class DBConsoleAdapter implements AdapterOperations {
     DBManager db = new DBManager();
 
     @Override

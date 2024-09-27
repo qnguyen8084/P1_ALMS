@@ -8,7 +8,7 @@
 
 package AdaptiveLibraryManagementSystem;
 
-interface _Transactions {
+interface AdapterOperations {
     void addBook(Book book);
     void removeBook(int bookId);
     void listBooks();
@@ -21,7 +21,7 @@ interface _Transactions {
     void search(String searchField, String searchString);
 }
 
-interface Transactions {
+interface AdminOperations {
     void addBook();
     void removeBook();
     void listBooks();

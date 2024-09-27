@@ -14,7 +14,7 @@ import java.util.Scanner;
  * ConsoleInterface is responsible for providing a user interface via the console
  * for interacting with the database through various operations defined in the Transactions interface.
  */
-public class ConsoleInterface implements Transactions{
+public class AdministratorInterface implements AdminOperations {
     DBConsoleAdapter adaptor = new DBConsoleAdapter();
     Scanner scanner = new Scanner(System.in);
 
