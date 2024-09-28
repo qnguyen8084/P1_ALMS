@@ -58,6 +58,9 @@ public class AdminCommander {
                 break;
             case "search":
                 break;
+            case "listHistory":
+                adminInterface.listHistory();
+                break;
             case "exit":
                 System.out.println("Thank you for using Adaptive Library Management System!");
                 System.exit(0);

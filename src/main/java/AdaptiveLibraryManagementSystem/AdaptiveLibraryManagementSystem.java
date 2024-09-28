@@ -75,6 +75,7 @@ public class AdaptiveLibraryManagementSystem {
 
         // Initialize Database for persistent storage.
         DBManager.initializeDatabase();
+        DBHistoryLogger.initializeDatabase();
 
         // Start user interface, cli
         new InteractiveConsole();

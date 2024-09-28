@@ -13,7 +13,9 @@ public class DBConsoleAdapter implements AdapterOperations {
 
     @Override
     public void addBook(Book book) {
-        db.addBook(book.getTitle(), book.getCreator());
+        String title = book.getTitle();
+        String author = book.getCreator();
+        db.addBook(title, author);
     }
 
     @Override
@@ -28,7 +30,8 @@ public class DBConsoleAdapter implements AdapterOperations {
 
     @Override
     public void addMember(Member member) {
-        db.addMember(member.getName());
+        String name = member.getName();
+        db.addMember(name);
     }
 
     @Override
@@ -58,6 +61,7 @@ public class DBConsoleAdapter implements AdapterOperations {
 
     @Override
     public void search(String searchField, String searchString) {
+
 
     }
 

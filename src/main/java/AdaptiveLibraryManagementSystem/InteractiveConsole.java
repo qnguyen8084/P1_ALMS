@@ -8,6 +8,10 @@
 
 package AdaptiveLibraryManagementSystem;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 // Declaration of InteractiveConsole used for user interface
@@ -31,7 +35,7 @@ public class InteractiveConsole implements Console {
                     "(addBook, removeBook, listBooks,\n" +
                     "addMember, removeMember, listMembers,\n" +
                     "borrowBook, returnBook, listLoans, \n" +
-                    "search, exit): ");
+                    "search, listHistory, exit): ");
         new AdminCommander(scanner.nextLine());
         }
     }
