@@ -7,7 +7,7 @@ README
 ### Sept. 27, 2024
 
 #### Introduction:
-*To design, implement, test, collaborate, and retain the learnings of a college course by providing evidence of our experience gained in a thoughtful and coherent manner through documentation and code for the beginning stage of an Adaptable Library Management System while faithfully adhering as closely to OOP principles and applying design patterns.*
+
 
 #### **Design:**
 
