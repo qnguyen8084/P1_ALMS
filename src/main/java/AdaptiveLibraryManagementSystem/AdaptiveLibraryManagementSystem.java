@@ -74,7 +74,7 @@ public class AdaptiveLibraryManagementSystem {
         printMessage(WELCOME_MESSAGE);
 
         // Initialize Database for persistent storage.
-        new DBManager();
+        DBManager.initializeDatabase();
 
         // Start user interface, cli
         new InteractiveConsole();
