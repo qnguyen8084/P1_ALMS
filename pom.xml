@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Project01AdaptiveLibrary</artifactId>
+    <artifactId>Project1_AdaptiveLibraryManagementSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -49,16 +49,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-junit-jupiter</artifactId>
-        <version>5.13.0</version>
-        <scope>test</scope>
-        </dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.13.0</version>
+            <scope>test</scope>
+            </dependency>
         <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>5.13.0</version>
-        <scope>test</scope>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.13.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

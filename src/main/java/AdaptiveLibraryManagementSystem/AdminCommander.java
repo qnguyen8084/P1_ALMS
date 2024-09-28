@@ -8,6 +8,8 @@
 
 package AdaptiveLibraryManagementSystem;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  This is the AdminCommander that acts an interface between the user and the Adaptive Library Management
  System. It is responsible for evaluating the command input to decide what request to send to
@@ -25,7 +27,7 @@ public class AdminCommander {
 
     // This case statement will be where the application logic makes the decision on which request to send
     // to or call from adminInterface. Case statement cases are pretty self-explanatory.
-    private void execute(String command) {
+    private void execute(@NotNull String command) {
         switch (command) {
             case "addBook":
                 adminInterface.addBook();

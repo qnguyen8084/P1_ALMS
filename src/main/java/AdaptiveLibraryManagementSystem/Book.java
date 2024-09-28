@@ -8,6 +8,9 @@
 
 package AdaptiveLibraryManagementSystem;
 
+// This is the class declaration for a Book class it has two constructors.
+// Constructor with two parameters is used when adding books to books table in the database
+// Constructor with four parameters is intended to be used when =
 public class Book {
     private int bookId;
     private final String title;
