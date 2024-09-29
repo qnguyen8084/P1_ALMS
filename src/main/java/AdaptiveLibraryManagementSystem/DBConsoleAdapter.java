@@ -8,61 +8,69 @@
 
 package AdaptiveLibraryManagementSystem;
 
-public class DBConsoleAdapter implements AdapterOperations {
-    DBManager db = new DBManager();
+public class DBConsoleAdapter implements AdapterOperations, BookAdapterOperations,
+        UserAdapterOperations, LoanAdapterOperations {
+    DBManager dbManager = new DBManager();
+    DBBookManager bookManager = new DBBookManager();
+    DBUserManager userManager = new DBUserManager();
+    DBLoanManager loanManager = new DBLoanManager();
 
     @Override
     public void addBook(Book book) {
         String title = book.getTitle();
         String author = book.getCreator();
-        db.addBook(title, author);
+        bookManager.addBook(title, author);
     }
 
     @Override
     public void removeBook(int bookId) {
-        db.removeBook(bookId);
+        bookManager.removeBook(bookId);
     }
 
     @Override
     public void listBooks() {
-        db.listBooks();
+        bookManager.listBooks();
     }
 
     @Override
     public void addMember(Member member) {
         String name = member.getName();
-        db.addMember(name);
+        userManager.addMember(name);
     }
 
     @Override
     public void removeMember(int memberId) {
-        db.removeMember(memberId);
+        userManager.removeMember(memberId);
     }
 
     @Override
     public void listMembers() {
-        db.listMembers();
+        userManager.listMembers();
     }
 
     @Override
     public void borrowBook(int memberId, int bookId) {
-        db.borrowBook(memberId, bookId);
+        loanManager.borrowBook(memberId, bookId);
     }
 
     @Override
     public void returnBook(int memberId, int bookId) {
-        db.returnBook(memberId, bookId);
+        loanManager.returnBook(memberId, bookId);
     }
 
     @Override
     public void listLoans() {
-        db.listLoans();
+        loanManager.listLoans();
     }
 
     @Override
-    public void search(String searchField, String searchString) {
+    public void search(String table, String searchField, String searchString) {
+        dbManager.search(table, searchField, searchString);
+    }
 
-
+    @Override
+    public void listHistory() {
+        DBHistoryLogger.listHistory();
     }
 
 }

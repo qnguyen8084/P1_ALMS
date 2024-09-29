@@ -9,7 +9,6 @@
 package AdaptiveLibraryManagementSystem;
 // imported libraries needed to interact with SQLite database
 import java.sql.*;
-import java.util.Arrays;
 
 // Definition of DBManager
 public class DBManager implements DBOperations {
@@ -69,196 +68,28 @@ public class DBManager implements DBOperations {
     }
 
     @Override
-    public void addMember(String name) {
-        String sql = "INSERT INTO members (name) VALUES (?)";
-        try (Connection conn = DBManager.connect();
+    public void search(String table, String searchField, String searchString) {
+        String sql = "SELECT * FROM (?) WHERE (?) = ?";
+        try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, name);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", name));
-    }
-
-    @Override
-    public void removeMember(int memberId) {
-        String sql = "DELETE FROM members WHERE ID = (?)";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", String.valueOf(memberId)));
-    }
-
-    @Override
-    public void listMembers() {
-        String sql = "SELECT * FROM members";
-        try (Connection conn = DBManager.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +
-                        ", Name: " + rs.getString("name"));
+             stmt.setString(1, table);
+             stmt.setString(2, table);
+            stmt.setString(3, searchString);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming the structure of the table is unknown, let's print out all columns
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        System.out.print(
+                                rs.getMetaData().getColumnName(i) +
+                                ": " + rs.getString(i) + "\t");
+                    }
+                    System.out.println();
+                }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public void addBook(String title, String author) {
-        String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, title);
-            stmt.setString(2, author);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        for (String s : Arrays.asList(title, author)) {
-            sql = sql.replaceFirst("\\?", s);
-        }
-        DBHistoryLogger.logTransaction(sql);
-    }
-
-    @Override
-    public void removeBook(int bookId) {
-        String sql = "DELETE FROM BOOKS WHERE ID = (?)";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", String.valueOf(bookId)));
-    }
-
-    @Override
-    public void listBooks() {
-        String sql = "SELECT * FROM books";
-        try (Connection conn = DBManager.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +
-                        ", Title: " + rs.getString("title") +
-                        ", Author: " + rs.getString("author") +
-                        ", Available: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void borrowBook(int memberId, int bookId) {
-        if (isBookAvailable(bookId)) {
-            setBookAvailability(0, bookId);
-            addLoan(bookId, memberId);
-        } else {
-            System.out.println("Book is not available!");
-        }
-    }
-
-    @Override
-    public void returnBook(int memberId, int bookId) {
-        setBookAvailability(1, bookId);
-        removeLoan(bookId, memberId);
-    }
-
-    @Override
-    public void listLoans() {
-        String sql = "SELECT * FROM loans";
-        try (Connection conn = DBManager.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +
-                        ", memberID: " + rs.getInt("memberId") +
-                        ", bookID: " + rs.getInt("bookId"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    @Override
-    public void search(String searchField, String searchString) {
-    }
-
-    public boolean isBookAvailable(int bookId) {
-        String sql = "SELECT isAvailable FROM books WHERE id = " + bookId;
-        try {
-            Connection conn = DBManager.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
-            System.out.println("isAvailable: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
-            boolean isAvailable = rs.getInt("isAvailable") == 1;
-            conn.close();
-            return isAvailable;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return false;
-    }
-
-    public void setBookAvailability(int availability, int bookId) {
-        String sql = "UPDATE books SET isAvailable = ? WHERE id = ?";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, availability);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        for (Integer s : Arrays.asList(availability, bookId)) {
-            sql = sql.replaceFirst("\\?", String.valueOf(s));
-        }
-        DBHistoryLogger.logTransaction(sql);
-    }
-
-
-    public void addLoan(int bookId, int memberId) {
-        String sql = "INSERT INTO loans (memberId, bookId) VALUES (?, ?)";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        for (Integer s : Arrays.asList(memberId, bookId)) {
-            sql = sql.replaceFirst("\\?", String.valueOf(s));
-        }
-        DBHistoryLogger.logTransaction(sql);
-    }
-
-    public void removeLoan(int bookId, int memberId) {
-        String sql = "DELETE FROM loans WHERE (memberId, bookId) = (?, ?)";
-        try (Connection conn = DBManager.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        for (Integer s : Arrays.asList(memberId, bookId)) {
-            sql = sql.replaceFirst("\\?", String.valueOf(s));
-        }
-        DBHistoryLogger.logTransaction(sql);
-    }
-
 
 }

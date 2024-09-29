@@ -35,5 +35,4 @@ public class Loan {
     public int getMemberId() {
         return memberId;
     }
-
 }

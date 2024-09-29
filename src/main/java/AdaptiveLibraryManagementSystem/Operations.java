@@ -8,43 +8,70 @@
 
 package AdaptiveLibraryManagementSystem;
 
-interface AdapterOperations {
+interface AdapterOperations{
+    void search(String table, String searchField, String searchString);
+    void listHistory();
+}
+
+interface BookAdapterOperations {
     void addBook(Book book);
     void removeBook(int bookId);
     void listBooks();
+}
+
+interface UserAdapterOperations {
     void addMember(Member member);
     void removeMember(int memberId);
     void listMembers();
+}
+
+interface LoanAdapterOperations {
     void borrowBook(int memberId, int bookId);
     void returnBook(int memberId, int bookId);
     void listLoans();
-    void search(String searchField, String searchString);
+}
+
+interface ConsoleOperations {
+    void search();
     void listHistory();
 }
 
-interface AdminOperations {
+interface ConsoleBookOperations {
     void addBook();
     void removeBook();
     void listBooks();
+}
+
+interface ConsoleUserOperations {
     void addMember();
     void removeMember();
     void listMembers();
+}
+
+interface ConsoleLoanOperations {
     void borrowBook();
     void returnBook();
     void listLoans();
-    void search(String searchField, String searchString);
-    void listHistory();
 }
 
 interface DBOperations {
-    void addMember(String name);
-    void removeMember(int memberId);
-    void listMembers();
+    void search(String table, String searchField, String searchString);
+}
+
+interface DBBookOperations {
     void addBook(String author, String title);
     void removeBook(int bookId);
     void listBooks();
-    void borrowBook(int memberId, int bookId);
-    void returnBook(int memberId, int bookId);
-    void listLoans();
-    void search(String searchField, String searchString);
+}
+
+interface DBUserOperations {
+    void addMember(String name);
+    void removeMember(int memberId);
+    void listMembers();
+}
+
+interface DBLoanOperations {
+     void borrowBook(int memberId, int bookId);
+     void returnBook(int memberId, int bookId);
+     void listLoans();
 }

@@ -54,8 +54,8 @@ public class AdaptiveLibraryManagementSystemTest {
     @Test
     public void testInteractiveConsole_Initialization_Expects_NotNull() {
         int TEST = 1;
-        InteractiveConsole interactiveConsole = new InteractiveConsole(TEST);
-        assertNotNull(interactiveConsole);
+        ViewerInteractiveConsole viewerInteractiveConsole = new ViewerInteractiveConsole(TEST);
+        assertNotNull(viewerInteractiveConsole);
     }
 
 }

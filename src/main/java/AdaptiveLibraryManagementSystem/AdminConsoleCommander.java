@@ -15,13 +15,13 @@ import org.jetbrains.annotations.NotNull;
  System. It is responsible for evaluating the command input to decide what request to send to
  the adminInterface.
  */
-public class AdminCommander {
+public class AdminConsoleCommander {
 
     // This instantiates an AdministratorInterface class object
     private final AdministratorInterface adminInterface = new AdministratorInterface();
 
     // This class is instantiated the constructor will begin the case statement.
-    public AdminCommander(String command) {
+    public AdminConsoleCommander(String command) {
         execute(command);
     }
 
@@ -57,6 +57,7 @@ public class AdminCommander {
                 adminInterface.listLoans();
                 break;
             case "search":
+                adminInterface.search();
                 break;
             case "listHistory":
                 adminInterface.listHistory();
