@@ -85,6 +85,11 @@ public class AdministratorInterface implements AdminOperations {
     }
 
     @Override
+    public void listHistory() {
+        adaptor.listHistory();
+    }
+
+    @Override
     public void search(String searchField, String searchString) {
     }
 

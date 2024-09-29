@@ -1,4 +1,3 @@
-README
 # [Adaptive Library Management System]
 ## Dr. Magda Tsintsadze
 ### Quy Nguyen
@@ -10,8 +9,14 @@ README
 #### **Introduction:**
 
 #### **Design Documentation**
+Class Diagram
+
+
+
+
 
 #### **Implementation:**
+
 
 #### **Testing:**
 
@@ -38,7 +43,7 @@ Things we need to talk about:
 * interface or abstract class <--- declaratoin for search definition----> implemented by relevent class (5)
 
 ###### Persistence
-Data persistence: SQLite (8)
+~~Data persistence: SQLite (8)~~
 Data recovery: *Ensure data integrity during storage and retrieval process* from corruption or loss (7)
 
 ###### Testing and Test Coverage Results
@@ -57,4 +62,4 @@ Data recovery: *Ensure data integrity during storage and retrieval process* from
 
 
 Dependency injection?
-inversion of Control?
+inversion of Control?     

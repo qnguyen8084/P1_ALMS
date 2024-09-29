@@ -14,7 +14,7 @@ public class DBConsoleAdapter implements AdapterOperations {
     @Override
     public void addBook(Book book) {
         String title = book.getTitle();
-        String author = book.getAuthor();
+        String author = book.getCreator();
         db.addBook(title, author);
     }
 

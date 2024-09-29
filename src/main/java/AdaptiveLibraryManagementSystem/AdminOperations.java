@@ -19,6 +19,7 @@ interface AdapterOperations {
     void returnBook(int memberId, int bookId);
     void listLoans();
     void search(String searchField, String searchString);
+    void listHistory();
 }
 
 interface AdminOperations {
@@ -32,6 +33,7 @@ interface AdminOperations {
     void returnBook();
     void listLoans();
     void search(String searchField, String searchString);
+    void listHistory();
 }
 
 interface DBOperations {
