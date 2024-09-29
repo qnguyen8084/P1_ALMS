@@ -27,13 +27,11 @@ public class ViewerInteractiveConsole implements ViewerConsole {
     public void adminConsole() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Please choose an option " +
-                    "search, listHistory, exit) ");
-         /*   System.out.print("Please choose an option \n" +
-                    "(addBook, removeBook, listBooks,\n" +
-                    "addMember, removeMember, listMembers,\n" +
-                    "borrowBook, returnBook, listLoans, \n" +
-                    "search, listHistory, exit): ");*/
+            System.out.print("Please choose an option \n" +
+            "(addBook, removeBook, listBooks,\n" +
+            "addMember, removeMember, listMembers,\n" +
+            "borrowBook, returnBook, listLoans, \n" +
+            "search, listHistory, exit): ");
         new AdminConsoleCommander(scanner.nextLine());
         }
     }

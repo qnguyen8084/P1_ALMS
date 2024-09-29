@@ -73,7 +73,7 @@ public class DBManager implements DBOperations {
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
              stmt.setString(1, table);
-             stmt.setString(2, table);
+             stmt.setString(2, searchField);
             stmt.setString(3, searchString);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
