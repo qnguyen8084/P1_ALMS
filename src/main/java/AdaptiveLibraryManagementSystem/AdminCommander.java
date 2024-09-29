@@ -57,6 +57,7 @@ public class AdminCommander {
                 adminInterface.listLoans();
                 break;
             case "search":
+                adminInterface.search();
                 break;
             case "listHistory":
                 adminInterface.listHistory();

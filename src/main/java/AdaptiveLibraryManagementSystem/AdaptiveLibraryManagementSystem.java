@@ -47,9 +47,6 @@ TODO: Implement search functions
     - members: id, name
     - books: id, title, author, isAvailable
     - loans: id, bookId, memberId
-TODO: Add history to allow recovery from data corruption or data loss.
-TODO: AdminCommander: case statement for search needs to be completed
-TODO: removing book that is none
 
 */
 

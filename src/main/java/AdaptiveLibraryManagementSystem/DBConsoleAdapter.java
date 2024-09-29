@@ -61,8 +61,11 @@ public class DBConsoleAdapter implements AdapterOperations {
 
     @Override
     public void search(String searchField, String searchString) {
+    }
 
-
+    @Override
+    public void listHistory() {
+        DBHistoryLogger.listHistory();
     }
 
 }

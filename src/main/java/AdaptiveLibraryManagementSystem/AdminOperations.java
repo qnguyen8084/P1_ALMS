@@ -32,7 +32,7 @@ interface AdminOperations {
     void borrowBook();
     void returnBook();
     void listLoans();
-    void search(String searchField, String searchString);
+    void search();
     void listHistory();
 }
 

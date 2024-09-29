@@ -90,7 +90,14 @@ public class AdministratorInterface implements AdminOperations {
     }
 
     @Override
-    public void search(String searchField, String searchString) {
+    public void search() {
+        String searchField;
+        String searchString;
+        System.out.print("Enter search field: ");
+        searchField = scanner.nextLine();
+        System.out.print("Enter search string: ");
+        searchString = scanner.nextLine();
+        adaptor.search(searchField, searchString);
     }
 
 }
