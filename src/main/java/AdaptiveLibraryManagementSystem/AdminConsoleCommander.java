@@ -2,8 +2,8 @@
  * Quy Nguyen
  * CSC635
  * Adaptive Library Management System
- * AdminController.java
- * Sept 7, 2024
+ * AdminConsoleCommander.java
+ * Sun, Sep 29 2024
  */
 
 package AdaptiveLibraryManagementSystem;

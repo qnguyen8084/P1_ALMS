@@ -1,10 +1,9 @@
 /*
  * Quy Nguyen
- * Dhruv Shah
  * CSC635
  * Adaptive Library Management System
  * AdaptiveLibraryManagementSystem.java
- * Sept 7, 2024
+ * Sun, Sep 29 2024
  */
 
 /*
@@ -41,12 +40,6 @@ TODO: Add test cases comments
         - Transactions
 TODO: Refactor to assignment specifications
 TODO: Complete and review documentation
-TODO: Implement search functions
-    - User/Admin requests search by column then with specific keyword
-    - searchable tables
-    - members: id, name
-    - books: id, title, author, isAvailable
-    - loans: id, bookId, memberId
 */
 
 

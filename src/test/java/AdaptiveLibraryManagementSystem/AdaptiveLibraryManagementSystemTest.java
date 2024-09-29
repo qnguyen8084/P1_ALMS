@@ -1,3 +1,11 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * AdaptiveLibraryManagementSystemTest.java
+ * Sun, Sep 29 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 import org.junit.jupiter.api.AfterEach;
@@ -21,27 +29,36 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class AdaptiveLibraryManagementSystemTest {
 
     // This is used to redirect output stream from console to ByteArray.
-    private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-    private final PrintStream originalOutStream = System.out;
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(outStream);
+    PrintStream originalOutStream = System.out;
+  /*  String inputString = "listMembers";
+    InputStream inStream = new ByteArrayInputStream(inputString.getBytes());
+    InputStream originalInStream = System.in;
+    Scanner scanner = new Scanner(System.in);
+    String readString = scanner.nextLine();*/
 
     // Redirects System.out from console to ByteArrayOutputStream before the start of each test.
     @BeforeEach
     public void setUp() {
-        System.setOut(new PrintStream(outStream));
+        System.setOut(ps);
+    //    System.setIn(inStream);
     }
 
     // Restores System.out from ByteArrayOutputStream to original stream after each test.
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOutStream);
+      //  System.setIn(originalInStream);
     }
-
 
     // Tests printMessage()
     @Test
     public void testPrint_Message() {
         String MESSAGE = "Welcome to Adaptive Library Management System!";
         AdaptiveLibraryManagementSystem.printMessage(MESSAGE);
+        System.setOut(originalOutStream);
+        System.out.println(outStream.toString());
         assertEquals(MESSAGE, outStream.toString().replaceAll("[\\n\\r]", ""));
     }
 
@@ -62,7 +79,22 @@ public class AdaptiveLibraryManagementSystemTest {
 
     @Test
     public void testInteractiveConsole() {
+
         AdaptiveLibraryManagementSystem.main(null);
+        System.setOut(originalOutStream);
+        System.out.println(outStream.toString());
+        getConsoleAndSwitch();
+    }
+
+
+    public void getConsoleAndSwitch() {
+        String consoleMessage = outStream.toString();
+        System.setOut(ps);
+        originalOutStream.println(consoleMessage);
+        System.setOut(originalOutStream);
+//        String readString = scanner.nextLine();
+
+
     }
 
 }

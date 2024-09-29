@@ -2,8 +2,8 @@
  * Quy Nguyen
  * CSC635
  * Adaptive Library Management System
- * InteractiveConsole.java
- * Sept 7, 2024
+ * ViewerInteractiveConsole.java
+ * Sun, Sep 29 2024
  */
 
 package AdaptiveLibraryManagementSystem;
@@ -27,11 +27,13 @@ public class ViewerInteractiveConsole implements ViewerConsole {
     public void adminConsole() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Please choose an option \n" +
+            System.out.print("Please choose an option " +
+                    "search, listHistory, exit) ");
+         /*   System.out.print("Please choose an option \n" +
                     "(addBook, removeBook, listBooks,\n" +
                     "addMember, removeMember, listMembers,\n" +
                     "borrowBook, returnBook, listLoans, \n" +
-                    "search, listHistory, exit): ");
+                    "search, listHistory, exit): ");*/
         new AdminConsoleCommander(scanner.nextLine());
         }
     }

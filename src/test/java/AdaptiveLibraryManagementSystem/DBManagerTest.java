@@ -1,3 +1,11 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * DBManagerTest.java
+ * Sun, Sep 29 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 import java.sql.Connection;

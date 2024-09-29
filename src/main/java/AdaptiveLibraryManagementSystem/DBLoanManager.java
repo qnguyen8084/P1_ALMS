@@ -2,8 +2,8 @@
  * Quy Nguyen
  * CSC635
  * Adaptive Library Management System
- * LoanManager.java
- * Sept 7, 2024
+ * DBLoanManager.java
+ * Sun, Sep 29 2024
  */
 
 package AdaptiveLibraryManagementSystem;

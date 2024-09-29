@@ -1,3 +1,11 @@
+/*
+ * Quy Nguyen
+ * CSC635
+ * Adaptive Library Management System
+ * UserInputExample.java
+ * Sun, Sep 29 2024
+ */
+
 package AdaptiveLibraryManagementSystem;
 
 import java.io.InputStream;
