@@ -4,9 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
-
+import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -56,6 +58,11 @@ public class AdaptiveLibraryManagementSystemTest {
         int TEST = 1;
         ViewerInteractiveConsole viewerInteractiveConsole = new ViewerInteractiveConsole(TEST);
         assertNotNull(viewerInteractiveConsole);
+    }
+
+    @Test
+    public void testInteractiveConsole() {
+        AdaptiveLibraryManagementSystem.main(null);
     }
 
 }
