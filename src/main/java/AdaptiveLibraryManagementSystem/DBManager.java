@@ -3,7 +3,7 @@
  * CSC635
  * Adaptive Library Management System
  * DBManager.java
- * Sun, Sep 29 2024
+ * Sept 7, 2024
  */
 
 package AdaptiveLibraryManagementSystem;
@@ -26,7 +26,7 @@ public class DBManager implements DBOperations {
             isAvailable INTEGER NOT NULL DEFAULT 1)""";
 
     // Initialize a String variable createMembersTable with an SQL string to create
-    // a table named members with 2 columns; id and name if table does not exist
+    // a table named members with 2 col umns; id and name if table does not exist
     private static final String CREATE_MEMBERS_TABLE = """
             CREATE TABLE IF NOT EXISTS members(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,20 +69,16 @@ public class DBManager implements DBOperations {
 
     @Override
     public void search(String table, String searchField, String searchString) {
-        String sql = "SELECT * FROM (?) WHERE (?) = (?)";
         try (Connection conn = connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             stmt.setString(1, table);
-             stmt.setString(2, searchField);
-            stmt.setString(3, searchString);
-            try (ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement pstmt = conn.prepareStatement(
+                     STR."SELECT * FROM \{table} WHERE \{searchField} = ?")) {
+            pstmt.setString(1, searchString);
+            try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     // Assuming the structure of the table is unknown, let's print out all columns
                     int columnCount = rs.getMetaData().getColumnCount();
                     for (int i = 1; i <= columnCount; i++) {
-                        System.out.print(
-                                rs.getMetaData().getColumnName(i) +
-                                ": " + rs.getString(i) + "\t");
+                        System.out.print(STR."\{rs.getMetaData().getColumnName(i)}: \{rs.getString(i)}\t");
                     }
                     System.out.println();
                 }
