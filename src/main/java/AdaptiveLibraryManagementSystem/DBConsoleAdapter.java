@@ -8,11 +8,12 @@
 
 package AdaptiveLibraryManagementSystem;
 
-public class DBConsoleAdapter implements AdapterOperations {
-    DBManager db = new DBManager();
-    BookManager bookManager = new BookManager();
-    UserManager userManager = new UserManager();
-    LoanManager loanManager = new LoanManager();
+public class DBConsoleAdapter implements AdapterOperations, BookAdapterOperations,
+        UserAdapterOperations, LoanAdapterOperations {
+    DBManager dbManager = new DBManager();
+    DBBookManager bookManager = new DBBookManager();
+    DBUserManager userManager = new DBUserManager();
+    DBLoanManager loanManager = new DBLoanManager();
 
     @Override
     public void addBook(Book book) {
@@ -63,7 +64,8 @@ public class DBConsoleAdapter implements AdapterOperations {
     }
 
     @Override
-    public void search(String searchField, String searchString) {
+    public void search(String table, String searchField, String searchString) {
+        dbManager.search(table, searchField, searchString);
     }
 
     @Override

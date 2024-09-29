@@ -2,61 +2,56 @@
  * Quy Nguyen
  * CSC635
  * Adaptive Library Management System
- * BookManager.java
+ * UserManager.java
  * Sept 7, 2024
  */
 
 package AdaptiveLibraryManagementSystem;
 
 import java.sql.*;
-import java.util.Arrays;
 
-public class BookManager implements BookOperations {
+public class DBUserManager implements DBUserOperations {
 
     @Override
-    public void addBook(String title, String author) {
-        String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
+    public void addMember(String name) {
+        String sql = "INSERT INTO members (name) VALUES (?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, title);
-            stmt.setString(2, author);
+            stmt.setString(1, name);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        for (String s : Arrays.asList(title, author)) {
-            sql = sql.replaceFirst("\\?", s);
-        }
-        DBHistoryLogger.logTransaction(sql);
+
+        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", name));
     }
 
     @Override
-    public void removeBook(int bookId) {
-        String sql = "DELETE FROM BOOKS WHERE ID = (?)";
+    public void removeMember(int memberId) {
+        String sql = "DELETE FROM members WHERE ID = (?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, bookId);
+            stmt.setInt(1, memberId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", String.valueOf(bookId)));
+        DBHistoryLogger.logTransaction(sql.replaceFirst("\\?", String.valueOf(memberId)));
     }
 
     @Override
-    public void listBooks() {
-        String sql = "SELECT * FROM books";
+    public void listMembers() {
+        String sql = "SELECT * FROM members";
         try (Connection conn = DBManager.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
-                        ", Title: " + rs.getString("title") +
-                        ", Author: " + rs.getString("author") +
-                        ", Available: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
+                        ", Name: " + rs.getString("name"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
 }

@@ -8,22 +8,18 @@
 
 package AdaptiveLibraryManagementSystem;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 // Declaration of InteractiveConsole used for user interface
-public class InteractiveConsole implements Console {
+public class ViewerInteractiveConsole implements ViewerConsole {
     // Constructor for interactive console
-    public InteractiveConsole() {
+    public ViewerInteractiveConsole() {
         System.out.println("Hello Administrator!\n" +
                 "Welcome to the Adaptive Library Management System!");
         adminConsole();
     }
 
-    public InteractiveConsole(int test) {
+    public ViewerInteractiveConsole(int test) {
         return;
     }
 
@@ -36,7 +32,7 @@ public class InteractiveConsole implements Console {
                     "addMember, removeMember, listMembers,\n" +
                     "borrowBook, returnBook, listLoans, \n" +
                     "search, listHistory, exit): ");
-        new AdminCommander(scanner.nextLine());
+        new AdminConsoleCommander(scanner.nextLine());
         }
     }
 }

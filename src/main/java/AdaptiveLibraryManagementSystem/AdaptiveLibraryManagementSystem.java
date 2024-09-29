@@ -74,7 +74,7 @@ public class AdaptiveLibraryManagementSystem {
         DBHistoryLogger.initializeDatabase();
 
         // Start user interface, cli
-        new InteractiveConsole();
+        new ViewerInteractiveConsole();
     }
 
     // Declared and defined printMessage function to help with readability.

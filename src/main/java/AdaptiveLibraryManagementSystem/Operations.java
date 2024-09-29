@@ -8,51 +8,69 @@
 
 package AdaptiveLibraryManagementSystem;
 
-interface AdapterOperations {
-    void addBook(Book book);
-    void removeBook(int bookId);
-    void listBooks();
-    void addMember(Member member);
-    void removeMember(int memberId);
-    void listMembers();
-    void borrowBook(int memberId, int bookId);
-    void returnBook(int memberId, int bookId);
-    void listLoans();
-    void search(String searchField, String searchString);
+interface AdapterOperations{
+    void search(String table, String searchField, String searchString);
     void listHistory();
 }
 
-interface AdminOperations {
-    void addBook();
-    void removeBook();
+interface BookAdapterOperations {
+    void addBook(Book book);
+    void removeBook(int bookId);
     void listBooks();
-    void addMember();
-    void removeMember();
+}
+
+interface UserAdapterOperations {
+    void addMember(Member member);
+    void removeMember(int memberId);
     void listMembers();
-    void borrowBook();
-    void returnBook();
+}
+
+interface LoanAdapterOperations {
+    void borrowBook(int memberId, int bookId);
+    void returnBook(int memberId, int bookId);
     void listLoans();
+}
+
+interface ConsoleOperations {
     void search();
     void listHistory();
 }
 
-interface DBOperations {
-    void search(String searchField, String searchString);
+interface ConsoleBookOperations {
+    void addBook();
+    void removeBook();
+    void listBooks();
 }
 
-interface BookOperations {
+interface ConsoleUserOperations {
+    void addMember();
+    void removeMember();
+    void listMembers();
+}
+
+interface ConsoleLoanOperations {
+    void borrowBook();
+    void returnBook();
+    void listLoans();
+}
+
+interface DBOperations {
+    void search(String table, String searchField, String searchString);
+}
+
+interface DBBookOperations {
     void addBook(String author, String title);
     void removeBook(int bookId);
     void listBooks();
 }
 
-interface UserOperations {
+interface DBUserOperations {
     void addMember(String name);
     void removeMember(int memberId);
     void listMembers();
 }
 
-interface LoanOperations {
+interface DBLoanOperations {
      void borrowBook(int memberId, int bookId);
      void returnBook(int memberId, int bookId);
      void listLoans();

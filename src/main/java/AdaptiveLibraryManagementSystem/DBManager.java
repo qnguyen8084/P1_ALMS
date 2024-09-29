@@ -9,7 +9,6 @@
 package AdaptiveLibraryManagementSystem;
 // imported libraries needed to interact with SQLite database
 import java.sql.*;
-import java.util.Arrays;
 
 // Definition of DBManager
 public class DBManager implements DBOperations {
@@ -69,7 +68,28 @@ public class DBManager implements DBOperations {
     }
 
     @Override
-    public void search(String searchField, String searchString) {
+    public void search(String table, String searchField, String searchString) {
+        String sql = "SELECT * FROM (?) WHERE (?) = ?";
+        try (Connection conn = connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             stmt.setString(1, table);
+             stmt.setString(2, table);
+            stmt.setString(3, searchString);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming the structure of the table is unknown, let's print out all columns
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        System.out.print(
+                                rs.getMetaData().getColumnName(i) +
+                                ": " + rs.getString(i) + "\t");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

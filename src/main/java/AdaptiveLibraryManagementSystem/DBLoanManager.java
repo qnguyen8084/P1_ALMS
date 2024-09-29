@@ -11,7 +11,7 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
-public class LoanManager implements LoanOperations{
+public class DBLoanManager implements DBLoanOperations{
 
     @Override
     public void borrowBook(int memberId, int bookId) {

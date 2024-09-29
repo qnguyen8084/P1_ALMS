@@ -11,7 +11,8 @@ package AdaptiveLibraryManagementSystem;
 import java.util.Scanner;
 
 
-public class AdministratorInterface implements AdminOperations {
+public class AdministratorInterface implements ConsoleOperations, ConsoleBookOperations,
+        ConsoleUserOperations, ConsoleLoanOperations {
     DBConsoleAdapter adaptor = new DBConsoleAdapter();
     Scanner scanner = new Scanner(System.in);
 
@@ -91,13 +92,16 @@ public class AdministratorInterface implements AdminOperations {
 
     @Override
     public void search() {
+        String searchTable;
         String searchField;
         String searchString;
+        System.out.print("Enter search table: ");
+        searchTable = scanner.nextLine();
         System.out.print("Enter search field: ");
         searchField = scanner.nextLine();
         System.out.print("Enter search string: ");
         searchString = scanner.nextLine();
-        adaptor.search(searchField, searchString);
+        adaptor.search(searchTable, searchField, searchString);
     }
 
 }
