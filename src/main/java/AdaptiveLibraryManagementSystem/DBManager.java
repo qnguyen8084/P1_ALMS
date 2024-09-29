@@ -69,7 +69,7 @@ public class DBManager implements DBOperations {
 
     @Override
     public void search(String table, String searchField, String searchString) {
-        String sql = "SELECT * FROM (?) WHERE (?) = ?";
+        String sql = "SELECT * FROM (?) WHERE (?) = (?)";
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
              stmt.setString(1, table);
