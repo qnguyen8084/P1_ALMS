@@ -10,53 +10,56 @@ package AdaptiveLibraryManagementSystem;
 
 public class DBConsoleAdapter implements AdapterOperations {
     DBManager db = new DBManager();
+    BookManager bookManager = new BookManager();
+    UserManager userManager = new UserManager();
+    LoanManager loanManager = new LoanManager();
 
     @Override
     public void addBook(Book book) {
         String title = book.getTitle();
         String author = book.getCreator();
-        db.addBook(title, author);
+        bookManager.addBook(title, author);
     }
 
     @Override
     public void removeBook(int bookId) {
-        db.removeBook(bookId);
+        bookManager.removeBook(bookId);
     }
 
     @Override
     public void listBooks() {
-        db.listBooks();
+        bookManager.listBooks();
     }
 
     @Override
     public void addMember(Member member) {
         String name = member.getName();
-        db.addMember(name);
+        userManager.addMember(name);
     }
 
     @Override
     public void removeMember(int memberId) {
-        db.removeMember(memberId);
+        userManager.removeMember(memberId);
     }
 
     @Override
     public void listMembers() {
-        db.listMembers();
+        userManager.listMembers();
     }
 
     @Override
     public void borrowBook(int memberId, int bookId) {
-        db.borrowBook(memberId, bookId);
+        loanManager.borrowBook(memberId, bookId);
     }
 
     @Override
     public void returnBook(int memberId, int bookId) {
-        db.returnBook(memberId, bookId);
+        loanManager.returnBook(memberId, bookId);
     }
 
     @Override
     public void listLoans() {
-        db.listLoans();
+        loanManager.listLoans();
     }
 
     @Override

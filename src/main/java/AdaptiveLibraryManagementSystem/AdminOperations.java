@@ -37,14 +37,23 @@ interface AdminOperations {
 }
 
 interface DBOperations {
-    void addMember(String name);
-    void removeMember(int memberId);
-    void listMembers();
+    void search(String searchField, String searchString);
+}
+
+interface BookOperations {
     void addBook(String author, String title);
     void removeBook(int bookId);
     void listBooks();
-    void borrowBook(int memberId, int bookId);
-    void returnBook(int memberId, int bookId);
-    void listLoans();
-    void search(String searchField, String searchString);
+}
+
+interface UserOperations {
+    void addMember(String name);
+    void removeMember(int memberId);
+    void listMembers();
+}
+
+interface LoanOperations {
+     void borrowBook(int memberId, int bookId);
+     void returnBook(int memberId, int bookId);
+     void listLoans();
 }
