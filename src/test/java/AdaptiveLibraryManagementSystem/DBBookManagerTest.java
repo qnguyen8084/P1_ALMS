@@ -1,10 +1,4 @@
-/*
- * Quy Nguyen
- * CSC635
- * Adaptive Library Management System
- * DBBookManagerTest.java
- * Sun, Sep 29 2024
- */
+
 
 package AdaptiveLibraryManagementSystem;
 

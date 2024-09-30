@@ -1,6 +1,7 @@
 /*
  * Quy Nguyen
- * CSC635
+ * Dhruv Shah
+ * CS635
  * Adaptive Library Management System
  * DBLoanManager.java
  * Sun, Sep 29 2024

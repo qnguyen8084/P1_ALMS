@@ -1,10 +1,12 @@
 /*
  * Quy Nguyen
- * CSC635
+ * Dhruv Shah
+ * CS635
  * Adaptive Library Management System
  * DBUserManager.java
  * Sun, Sep 29 2024
  */
+
 
 package AdaptiveLibraryManagementSystem;
 

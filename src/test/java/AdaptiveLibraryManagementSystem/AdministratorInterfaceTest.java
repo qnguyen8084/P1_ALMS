@@ -1,10 +1,3 @@
-/*
- * Quy Nguyen
- * CSC635
- * Adaptive Library Management System
- * AdministratorInterfaceTest.java
- * Sun, Sep 29 2024
- */
 
 package AdaptiveLibraryManagementSystem;
 

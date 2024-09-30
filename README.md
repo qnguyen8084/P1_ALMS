@@ -1,8 +1,8 @@
 # [Adaptive Library Management System]
 ## Dr. Magda Tsintsadze
-### Quy Nguyen
-### SDSU Global: CSC635 FALL 2024
-### Sept. 27, 2024
+### Quy Nguyen - Dhruv Shah
+### SDSU Global: CS635 FALL 2024
+### Sept. 29, 2024
 
 
 #### **Introduction:**

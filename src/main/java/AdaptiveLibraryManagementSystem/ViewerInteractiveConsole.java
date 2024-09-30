@@ -1,5 +1,23 @@
 /*
  * Quy Nguyen
+ * Dhruv Shah
+ * CS635
+ * Adaptive Library Management System
+ * ViewerInteractiveConsole.java
+ * Sun, Sep 29 2024
+ */
+
+/*
+ * Quy Nguyen
+ * Dhruv Shah
+ * CS635
+ * Adaptive Library Management System
+ * ViewerInteractiveConsole.java
+ * Sun, Sep 29 2024
+ */
+
+/*
+ * Quy Nguyen
  * CSC635
  * Adaptive Library Management System
  * ViewerInteractiveConsole.java
