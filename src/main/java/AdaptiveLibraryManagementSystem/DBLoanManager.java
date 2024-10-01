@@ -12,104 +12,118 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
-public class DBLoanManager implements DBLoanOperations{
+public class DBLoanManager implements DBLoanOperations {
 
+    // Method to handle book borrowing process
     @Override
     public void borrowBook(int memberId, int bookId) {
+        // Check if the book is available before allowing it to be borrowed
         if (isBookAvailable(bookId)) {
+            // Set the book's availability to unavailable (0)
             setBookAvailability(0, bookId);
+            // Add a loan record for the book and member
             addLoan(bookId, memberId);
         } else {
             System.out.println("Book is not available!");
         }
     }
 
+    // Method to handle book return process
     @Override
     public void returnBook(int memberId, int bookId) {
+        // Set the book's availability to available (1)
         setBookAvailability(1, bookId);
+        // Remove the loan record for the book and member
         removeLoan(bookId, memberId);
     }
 
+    // Method to list all loan records in the system
     @Override
     public void listLoans() {
         String sql = "SELECT * FROM loans";
         try (Connection conn = DBManager.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
+            // Loop through the result set and print each loan's details
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") +
                         ", memberID: " + rs.getInt("memberId") +
                         ", bookID: " + rs.getInt("bookId"));
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // Handle SQL exceptions
         }
-
     }
 
+    // Method to check if a book is available
     public boolean isBookAvailable(int bookId) {
         String sql = "SELECT isAvailable FROM books WHERE id = " + bookId;
         try {
             Connection conn = DBManager.connect();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
+            rs.next(); // Move the cursor to the first result
             System.out.println("isAvailable: " + (rs.getInt("isAvailable") == 1 ? "Yes" : "No"));
-            boolean isAvailable = rs.getInt("isAvailable") == 1;
+            boolean isAvailable = rs.getInt("isAvailable") == 1; // Check if the book is available
             conn.close();
             return isAvailable;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // Handle SQL exceptions
         }
-        return false;
+        return false; // If an error occurs, assume the book is unavailable
     }
 
+    // Method to set the availability status of a book
     public void setBookAvailability(int availability, int bookId) {
         String sql = "UPDATE books SET isAvailable = ? WHERE id = ?";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, availability);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
+            stmt.setInt(1, availability); // Set the availability status
+            stmt.setInt(2, bookId); // Set the book ID
+            stmt.executeUpdate(); // Execute the update
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // Handle SQL exceptions
         }
+        // Replace placeholders in SQL query for logging purposes
         for (Integer s : Arrays.asList(availability, bookId)) {
             sql = sql.replaceFirst("\\?", String.valueOf(s));
         }
-        DBHistoryLogger.logTransaction(sql);
+        DBHistoryLogger.logTransaction(sql); // Log the transaction
     }
 
-
+    // Method to add a loan record to the database
     public void addLoan(int bookId, int memberId) {
         String sql = "INSERT INTO loans (memberId, bookId) VALUES (?, ?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
+            stmt.setInt(1, memberId); // Set the member ID
+            stmt.setInt(2, bookId); // Set the book ID
+            stmt.executeUpdate(); // Execute the insert
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // Handle SQL exceptions
         }
+        // Replace placeholders in SQL query for logging purposes
         for (Integer s : Arrays.asList(memberId, bookId)) {
             sql = sql.replaceFirst("\\?", String.valueOf(s));
         }
-        DBHistoryLogger.logTransaction(sql);
+        DBHistoryLogger.logTransaction(sql); // Log the transaction
     }
 
+    // Method to remove a loan record from the database
     public void removeLoan(int bookId, int memberId) {
         String sql = "DELETE FROM loans WHERE (memberId, bookId) = (?, ?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId);
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
+            stmt.setInt(1, memberId); // Set the member ID
+            stmt.setInt(2, bookId); // Set the book ID
+            stmt.executeUpdate(); // Execute the delete
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // Handle SQL exceptions
         }
+        // Replace placeholders in SQL query for logging purposes
         for (Integer s : Arrays.asList(memberId, bookId)) {
             sql = sql.replaceFirst("\\?", String.valueOf(s));
         }
-        DBHistoryLogger.logTransaction(sql);
+        DBHistoryLogger.logTransaction(sql); // Log the transaction
     }
 }
