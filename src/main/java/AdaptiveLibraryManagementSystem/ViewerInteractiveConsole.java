@@ -30,10 +30,13 @@ import java.util.Scanner;
 
 // Declaration of InteractiveConsole used for user interface
 public class ViewerInteractiveConsole implements ViewerConsole {
+
+    String WELCOME_MESSAGE = "Hello Administrator!\n" +
+            "Welcome to the Adaptive Library Management System!";
+
     // Constructor for interactive console
     public ViewerInteractiveConsole() {
-        System.out.println("Hello Administrator!\n" +
-                "Welcome to the Adaptive Library Management System!");
+        System.out.println(WELCOME_MESSAGE);
         adminConsole();
     }
 
@@ -43,14 +46,18 @@ public class ViewerInteractiveConsole implements ViewerConsole {
 
     @Override
     public void adminConsole() {
+
+        String ADMIN_OPTIONS =  "Please choose an option \n" +
+                "(addBook, removeBook, listBooks,\n" +
+                "addMember, removeMember, listMembers,\n" +
+                "borrowBook, returnBook, listLoans, \n" +
+                "search, listHistory, exit): ";
+
         Scanner scanner = new Scanner(System.in);
+
         while (true) {
-            System.out.print("Please choose an option \n" +
-            "(addBook, removeBook, listBooks,\n" +
-            "addMember, removeMember, listMembers,\n" +
-            "borrowBook, returnBook, listLoans, \n" +
-            "search, listHistory, exit): ");
-        new AdminConsoleCommander(scanner.nextLine());
+            System.out.print(ADMIN_OPTIONS);
+            new AdminConsoleCommander(scanner.nextLine());
         }
     }
 }

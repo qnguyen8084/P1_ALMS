@@ -42,6 +42,7 @@ public abstract class LibraryItem {
         this.available = isAvailable;
     }
 
+
 }
 
 interface LibraryItemInterface {

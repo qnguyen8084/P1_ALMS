@@ -9,7 +9,7 @@
 
 package AdaptiveLibraryManagementSystem;
 
-public abstract class User {
+public abstract class User implements Transactions{
     private final String name;
 
     public User(String name) {
@@ -20,6 +20,20 @@ public abstract class User {
         return name;
     }
 
+    @Override
+    public void add() {
+        DBUserManager.add(this.name);
+    }
+
+    @Override
+    public void remove(int id) {
+
+    }
+
+    @Override
+    public void search() {
+
+    }
 }
 
 interface FetchId {

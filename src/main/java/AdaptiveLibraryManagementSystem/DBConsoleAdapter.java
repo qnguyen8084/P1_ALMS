@@ -35,7 +35,6 @@ public class DBConsoleAdapter implements AdapterOperations, BookAdapterOperation
     @Override
     public void addMember(Member member) {
         String name = member.getName();
-        userManager.addMember(name);
     }
 
     @Override

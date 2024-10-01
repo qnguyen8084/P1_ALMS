@@ -23,7 +23,8 @@ public class AdministratorInterface implements ConsoleOperations, ConsoleBookOpe
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
-        adaptor.addBook(new Book(title, author));
+        Book book = new Book(title, author);
+        adaptor.addBook(book);
     }
 
 

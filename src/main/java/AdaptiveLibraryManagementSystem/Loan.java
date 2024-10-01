@@ -9,13 +9,14 @@
 
 package AdaptiveLibraryManagementSystem;
 
+import org.sqlite.core.DB;
+
 public class Loan {
     private int id;
     private final int bookId;
-    private final int memberId;
 
     public Loan(int id, int bookId, int memberId) {
-        this.id = id;
+
         this.bookId = bookId;
         this.memberId = memberId;
     }
@@ -36,4 +37,5 @@ public class Loan {
     public int getMemberId() {
         return memberId;
     }
+
 }
