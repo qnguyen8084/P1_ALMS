@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <!-- The DataSourceManagerImpl component handles the database connections for the project -->
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+
+    <!-- Configuration for the first data source (myLibrary.db) -->
     <data-source source="LOCAL" name="myLibrary.db" uuid="e69c44bf-2081-4d4a-a937-448bdc8d0804">
+      <!-- Reference to the SQLite driver -->
       <driver-ref>sqlite.xerial</driver-ref>
+      <!-- Synchronize the data source with the local database -->
       <synchronize>true</synchronize>
+      <!-- JDBC driver class used for connecting to the database -->
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <!-- JDBC URL specifying the location of the SQLite database file -->
       <jdbc-url>jdbc:sqlite:myLibrary.db</jdbc-url>
+      <!-- Additional properties for the JDBC connection -->
       <jdbc-additional-properties>
+        <!-- Property to disable Kubernetes DB integration -->
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
+      <!-- Working directory where the project files are located -->
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+
+    <!-- Configuration for the second data source (myLibraryHistory.db) -->
     <data-source source="LOCAL" name="myLibraryHistory.db" uuid="494b10e0-88a6-4e8c-acf9-d4e7dadfbe5d">
+      <!-- Reference to the SQLite driver -->
       <driver-ref>sqlite.xerial</driver-ref>
+      <!-- Synchronize the data source with the local database -->
       <synchronize>true</synchronize>
+      <!-- JDBC driver class used for connecting to the database -->
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <!-- JDBC URL specifying the location of the SQLite history database file -->
       <jdbc-url>jdbc:sqlite:myLibraryHistory.db</jdbc-url>
+      <!-- Additional properties for the JDBC connection -->
       <jdbc-additional-properties>
+        <!-- Property to disable Kubernetes DB integration -->
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
+      <!-- Working directory where the project files are located -->
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+
   </component>
 </project>
