@@ -6,8 +6,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -24,24 +27,17 @@ public class AdaptiveLibraryManagementSystemTest {
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(outStream);
     PrintStream originalOutStream = System.out;
-  /*  String inputString = "listMembers";
-    InputStream inStream = new ByteArrayInputStream(inputString.getBytes());
-    InputStream originalInStream = System.in;
-    Scanner scanner = new Scanner(System.in);
-    String readString = scanner.nextLine();*/
 
     // Redirects System.out from console to ByteArrayOutputStream before the start of each test.
     @BeforeEach
     public void setUp() {
         System.setOut(ps);
-    //    System.setIn(inStream);
     }
 
     // Restores System.out from ByteArrayOutputStream to original stream after each test.
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOutStream);
-      //  System.setIn(originalInStream);
     }
 
     // Tests printMessage()
@@ -67,26 +63,6 @@ public class AdaptiveLibraryManagementSystemTest {
         int TEST = 1;
         ViewerInteractiveConsole viewerInteractiveConsole = new ViewerInteractiveConsole(TEST);
         assertNotNull(viewerInteractiveConsole);
-    }
-
-    @Test
-    public void testInteractiveConsole() {
-
-        AdaptiveLibraryManagementSystem.main(null);
-        System.setOut(originalOutStream);
-        System.out.println(outStream.toString());
-        getConsoleAndSwitch();
-    }
-
-
-    public void getConsoleAndSwitch() {
-        String consoleMessage = outStream.toString();
-        System.setOut(ps);
-        originalOutStream.println(consoleMessage);
-        System.setOut(originalOutStream);
-//        String readString = scanner.nextLine();
-
-
     }
 
 }

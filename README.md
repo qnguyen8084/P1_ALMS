@@ -38,3 +38,13 @@ to the item type.
 
 <img title="Adapter" alt="Current Class Diagram" width="2012" src="reportImages/DBConsoleAdapter.png">
 
+### Testing Coverage and Results
+We were not able to create a comprehensive test plan to get 100 percent code coverage.
+A majority of our testing was manual testing, and it seems that the application is working as intended.
+We are able to add, remove, and search for members, books, and loans. Data persistence is working
+with the database. We are able to add, remove, and search for entries in the database. We hava
+a backup database that records all transactions that writes or deletes from the database, however
+we don't have a specific implementation to roll back the data. I have a bunch of tests
+in the tests section that does a lot, but my IDE helped generate a portion of those tests.
+
+<img title="testCoverage" alt="testCoverage" width="1678" src="reportImages/testCoverage.png">
