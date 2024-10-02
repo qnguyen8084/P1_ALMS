@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Root element for the project configuration file -->
 <project version="4">
+  <!-- Component responsible for version control system (VCS) directory mappings -->
   <component name="VcsDirectoryMappings">
+    
+    <!-- Maps the project directory to the Git version control system (VCS) -->
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    
   </component>
 </project>
