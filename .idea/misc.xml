@@ -21,7 +21,6 @@
 
   <!-- PWA (Progressive Web App) component is enabled and was activated at least once -->
   <component name="PWA">
-    <option name="enabled" value="true" />
     <option name="wasEnabledAtLeastOnce" value="true" />
   </component>
 

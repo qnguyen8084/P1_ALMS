@@ -68,6 +68,7 @@ public class DBManager implements DBOperations {
         return DriverManager.getConnection(URL);
     }
 
+    // Search function to search.
     @Override
     public void search(String table, String searchField, String searchString) {
         try (Connection conn = connect();
