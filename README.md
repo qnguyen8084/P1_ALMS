@@ -25,6 +25,16 @@ hierarchy by being able to create derived classes that inherit attributes from t
 is never instantiated.
 
 <figure>
+<figcaption>First Sketch</figcaption>
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/diagram1.jpg">
+</figure>
+
+<figure>
+<figcaption>Second Rough Sketch</figcaption>
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/diagram2.jpg">
+</figure>
+
+<figure>
 <figcaption>User Class Diagram</figcaption>
 <img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/User.png">
 </figure>
