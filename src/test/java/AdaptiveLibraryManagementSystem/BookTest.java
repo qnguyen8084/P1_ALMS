@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookTest {
 
     @Test
-    void getIdWithFullContructors() {
+    void getIdWithFullConstructors() {
         // create a Book instance using the full constructor
         Book testBook = new Book(123, "Test Title", "Test Author", true);
 
@@ -17,7 +17,7 @@ class BookTest {
     }
 
     @Test
-    void getTitleWithFullContructors() {
+    void getTitleWithFullConstructors() {
         // create a Book instance using the full constructor
         Book testBook = new Book(123, "Test Title", "Test Author", true);
 
@@ -25,7 +25,7 @@ class BookTest {
     }
 
     @Test
-    void getCreatorWithFullContructors() {
+    void getCreatorWithFullConstructors() {
         // create a Book instance using the full constructor
         Book testBook = new Book(123, "Test Title", "Test Author", true);
 
@@ -33,7 +33,7 @@ class BookTest {
     }
 
     @Test
-    void getIdWithTwoParamContructor() {
+    void getIdWithTwoParamConstructors() {
         // create a Book instance using the basic constructor
         Book testBook = new Book("Test Title", "Test Author");
 
@@ -43,7 +43,7 @@ class BookTest {
     }
 
     @Test
-    void getTitleWithTwoParamContructor() {
+    void getTitleWithTwoParamConstructors() {
         // create a Book instance using the basic constructor
         Book testBook = new Book("Test Title", "Test Author");
 
@@ -52,7 +52,7 @@ class BookTest {
     }
 
     @Test
-    void getCreatorWithTwoParamContructor() {
+    void getCreatorWithTwoParamConstructors() {
         // create a Book instance using the basic constructor
         Book testBook = new Book("Test Title", "Test Author");
 

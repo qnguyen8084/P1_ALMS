@@ -1,75 +1,81 @@
 package AdaptiveLibraryManagementSystem;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.SubstringMatcher;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.hamcrest.core.StringContains;
+import org.junit.Assert;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Random;
 
-import java.sql.*;
-
-import static AdaptiveLibraryManagementSystem.DBManager.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
-
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 class DBUserManagerTest {
 
-    @Mock
-    private Connection connection;
+    DBUserManager dbUserManager = new DBUserManager();
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(outStream);
+    PrintStream originalOutStream = System.out;
+    Random rand = new Random();
+    int randomNum = rand.nextInt((100 - 1) + 1) + 1;
+    String memberName = STR."member\{randomNum}";
 
-    @Mock
-    private Statement statement;
-
-    @Mock
-    private ResultSet resultSet;
-
-    private DBUserManager dbUserManager;
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        connection = Mockito.mock(Connection.class);
-        statement = Mockito.mock(Statement.class);
-        resultSet = Mockito.mock(ResultSet.class);
-        dbUserManager = new DBUserManager();
-        DBManager.overrideConnection(connection);
+        System.setOut(ps);
     }
 
     @AfterEach
     public void tearDown() {
-        DBManager.restoreDefaultConnection();
-        Mockito.reset(connection, statement, resultSet);
+        System.setOut(originalOutStream);
     }
 
     @Test
-    public void testListMembers() throws SQLException {
-        when(connection.createStatement()).thenReturn(statement);
-        when(statement.executeQuery("SELECT * FROM members")).thenReturn(resultSet);
-        when(resultSet.next()).thenReturn(true).thenReturn(false);
-        when(resultSet.getInt("id")).thenReturn(1);
-        when(resultSet.getString("name")).thenReturn("John Doe");
+    void addTest() {
+        Member testMember = new Member(memberName);
+        dbUserManager.add(testMember);
+        dbUserManager.search(memberName);
+        System.out.println(outStream.toString());
+        MatcherAssert.assertThat(outStream.toString(), containsString(memberName));
+    }
 
+    @Test
+    void removeTest() {
+        String entryId = "";
+        Member testMember = new Member(memberName);
+        dbUserManager.add(testMember);
+        dbUserManager.search(memberName);
+        Pattern p = Pattern.compile("id:.(\\d+).");
+        Matcher m = p.matcher(outStream.toString());
+        if(m.find()) {
+            entryId = m.group(1);
+        }
+        dbUserManager.remove(Integer.parseInt(entryId));
         dbUserManager.list();
-
-        assertNotNull(resultSet);
-        assertEquals(1, resultSet.getInt("id"));
-        assertEquals("John Doe", resultSet.getString("name"));
+        assertFalse(outStream.toString().contains(STR."id. \{m.group(1)}"));
+        // additional assertions or verifications here
     }
 
+    @Test
+    void searchTest() {
+        Member testMember = new Member(memberName);
+        dbUserManager.add(testMember);
+        dbUserManager.search(memberName);
+        MatcherAssert.assertThat(outStream.toString(), containsString(memberName));
+    }
 
     @Test
-    public void testAddMember() throws SQLException {
-        Member member = new Member("John Doe");
-        String sql = "INSERT INTO members (name) VALUES (?)";
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-        when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
-
-        dbUserManager.add(member);
-
-        verify(preparedStatement).setString(1, "John Doe");
-        verify(preparedStatement).executeUpdate();
-        verifyNoMoreInteractions(preparedStatement);
+    void listTest() {
+        Member testMember = new Member(memberName);
+        dbUserManager.add(testMember);
+        dbUserManager.list();
+        MatcherAssert.assertThat(outStream.toString(), containsString(memberName));
     }
 }

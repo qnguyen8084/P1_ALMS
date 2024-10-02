@@ -11,6 +11,8 @@ package AdaptiveLibraryManagementSystem;
 
 import java.sql.*;
 
+import static AdaptiveLibraryManagementSystem.DBManager.connect;
+
 /*
  * The DBUserManager class implements the DBUserOperations interface and
  * manages the database operations for library members, such as adding,
@@ -77,8 +79,26 @@ public class DBUserManager implements Transactions<Member> {
     }
 
     @Override
-    public void search(String searchTerm) {
-
+    public void search(String searchString) {
+        String table = "members";
+        String searchField = "name";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(
+                     STR."SELECT * FROM \{table} WHERE \{searchField} = ?")) {
+            pstmt.setString(1, searchString);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming the structure of the table is unknown, let's print out all columns
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        System.out.print(STR."\{rs.getMetaData().getColumnName(i)}: \{rs.getString(i)}\t");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
