@@ -12,24 +12,24 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
-public class DBBookManager implements DBBookOperations {
+public class DBBookManager implements Transactions<Book> {
 
     // Method to add a new book to the database
     @Override
-    public void addBook(String title, String author) {
+    public void add(Book book) {
         // SQL query for inserting a book into the books table
         String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
         try (Connection conn = DBManager.connect(); // Establish connection
              PreparedStatement stmt = conn.prepareStatement(sql)) { // Prepare the statement
-            stmt.setString(1, title); // Set the title parameter
-            stmt.setString(2, author); // Set the author parameter
+            stmt.setString(1, book.getTitle()); // Set the title parameter
+            stmt.setString(2, book.getCreator()); // Set the author parameter
             stmt.executeUpdate(); // Execute the update to add the book
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // Handle any SQL exceptions
         }
 
         // Replace placeholders in the SQL query with actual values for logging
-        for (String s : Arrays.asList(title, author)) {
+        for (String s : Arrays.asList(book.getTitle(), book.getCreator())) {
             sql = sql.replaceFirst("\\?", s);
         }
         DBHistoryLogger.logTransaction(sql); // Log the transaction with the updated SQL query
@@ -37,7 +37,7 @@ public class DBBookManager implements DBBookOperations {
 
     // Method to remove a book from the database by its ID
     @Override
-    public void removeBook(int bookId) {
+    public void remove(int bookId) {
         // SQL query for deleting a book from the books table by its ID
         String sql = "DELETE FROM BOOKS WHERE ID = (?)";
         try (Connection conn = DBManager.connect(); // Establish connection
@@ -53,7 +53,12 @@ public class DBBookManager implements DBBookOperations {
 
     // Method to list all books in the database
     @Override
-    public void listBooks() {
+    public void search(String title) {
+
+    }
+
+    @Override
+    public void list() {
         // SQL query for selecting all books from the books table
         String sql = "SELECT * FROM books";
         try (Connection conn = DBManager.connect(); // Establish connection

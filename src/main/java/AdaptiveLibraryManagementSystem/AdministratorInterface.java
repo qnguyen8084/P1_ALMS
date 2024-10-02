@@ -26,7 +26,8 @@ public class AdministratorInterface implements ConsoleOperations, ConsoleBookOpe
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
-        adaptor.addBook(new Book(title, author)); // Add the book using the adapter
+        Book book = new Book(title, author);
+        adaptor.addBook(book); // Add the book using the adapter
     }
 
     // Method to remove an existing book
@@ -74,7 +75,8 @@ public class AdministratorInterface implements ConsoleOperations, ConsoleBookOpe
         int memberId = Integer.parseInt(scanner.nextLine());
         System.out.print("Enter book ID to checkout: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        adaptor.borrowBook(memberId, bookId); // Borrow the book using the adapter
+        Loan loan = new Loan(bookId, memberId);
+        adaptor.borrowBook(loan); // Borrow the book using the adapter
     }
 
     // Method to allow a member to return a borrowed book

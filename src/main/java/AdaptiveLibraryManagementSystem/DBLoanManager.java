@@ -12,24 +12,22 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
-public class DBLoanManager implements DBLoanOperations {
+public class DBLoanManager implements Transactions<Loan> {
 
     // Method to handle book borrowing process
-    @Override
-    public void borrowBook(int memberId, int bookId) {
+    public void borrowBook(Loan loan) {
         // Check if the book is available before allowing it to be borrowed
-        if (isBookAvailable(bookId)) {
+        if (isBookAvailable(loan.getBookId())) {
             // Set the book's availability to unavailable (0)
-            setBookAvailability(0, bookId);
+            setBookAvailability(0, loan.getBookId());
             // Add a loan record for the book and member
-            addLoan(bookId, memberId);
+            add(loan);
         } else {
             System.out.println("Book is not available!");
         }
     }
 
     // Method to handle book return process
-    @Override
     public void returnBook(int memberId, int bookId) {
         // Set the book's availability to available (1)
         setBookAvailability(1, bookId);
@@ -39,7 +37,7 @@ public class DBLoanManager implements DBLoanOperations {
 
     // Method to list all loan records in the system
     @Override
-    public void listLoans() {
+    public void list() {
         String sql = "SELECT * FROM loans";
         try (Connection conn = DBManager.connect();
              Statement stmt = conn.createStatement();
@@ -92,18 +90,19 @@ public class DBLoanManager implements DBLoanOperations {
     }
 
     // Method to add a loan record to the database
-    public void addLoan(int bookId, int memberId) {
+    @Override
+    public void add(Loan loan) {
         String sql = "INSERT INTO loans (memberId, bookId) VALUES (?, ?)";
         try (Connection conn = DBManager.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, memberId); // Set the member ID
-            stmt.setInt(2, bookId); // Set the book ID
+            stmt.setInt(1, loan.getMemberId()); // Set the member ID
+            stmt.setInt(2, loan.getBookId()); // Set the book ID
             stmt.executeUpdate(); // Execute the insert
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // Handle SQL exceptions
         }
         // Replace placeholders in SQL query for logging purposes
-        for (Integer s : Arrays.asList(memberId, bookId)) {
+        for (Integer s : Arrays.asList(loan.getMemberId(), loan.getBookId())) {
             sql = sql.replaceFirst("\\?", String.valueOf(s));
         }
         DBHistoryLogger.logTransaction(sql); // Log the transaction
@@ -125,5 +124,13 @@ public class DBLoanManager implements DBLoanOperations {
             sql = sql.replaceFirst("\\?", String.valueOf(s));
         }
         DBHistoryLogger.logTransaction(sql); // Log the transaction
+    }
+
+    @Override
+    public void search(String searchTerm) {
+    }
+
+    @Override
+    public void remove(int bookId) {
     }
 }
