@@ -12,6 +12,8 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
+import static AdaptiveLibraryManagementSystem.DBManager.connect;
+
 public class DBBookManager implements Transactions<Book> {
 
     // Method to add a new book to the database
@@ -19,7 +21,7 @@ public class DBBookManager implements Transactions<Book> {
     public void add(Book book) {
         // SQL query for inserting a book into the books table
         String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
-        try (Connection conn = DBManager.connect(); // Establish connection
+        try (Connection conn = connect(); // Establish connection
              PreparedStatement stmt = conn.prepareStatement(sql)) { // Prepare the statement
             stmt.setString(1, book.getTitle()); // Set the title parameter
             stmt.setString(2, book.getCreator()); // Set the author parameter
@@ -40,7 +42,7 @@ public class DBBookManager implements Transactions<Book> {
     public void remove(int bookId) {
         // SQL query for deleting a book from the books table by its ID
         String sql = "DELETE FROM BOOKS WHERE ID = (?)";
-        try (Connection conn = DBManager.connect(); // Establish connection
+        try (Connection conn = connect(); // Establish connection
              PreparedStatement stmt = conn.prepareStatement(sql)) { // Prepare the statement
             stmt.setInt(1, bookId); // Set the book ID parameter
             stmt.executeUpdate(); // Execute the update to remove the book
@@ -52,16 +54,35 @@ public class DBBookManager implements Transactions<Book> {
     }
 
     // Method to list all books in the database
-    @Override
-    public void search(String title) {
 
+    @Override
+    public void search(String searchString) {
+        String table = "books";
+        String searchField = "title";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(
+                     STR."SELECT * FROM \{table} WHERE \{searchField} = ?")) {
+            pstmt.setString(1, searchString);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming the structure of the table is unknown, let's print out all columns
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        System.out.print(STR."\{rs.getMetaData().getColumnName(i)}: \{rs.getString(i)}\t");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void list() {
         // SQL query for selecting all books from the books table
         String sql = "SELECT * FROM books";
-        try (Connection conn = DBManager.connect(); // Establish connection
+        try (Connection conn = connect(); // Establish connection
              Statement stmt = conn.createStatement(); // Create a statement
              ResultSet rs = stmt.executeQuery(sql)) { // Execute the query and get the result set
             // Iterate through the result set and display each book's details

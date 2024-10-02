@@ -75,7 +75,7 @@ public class AdministratorInterface implements ConsoleOperations, ConsoleBookOpe
         int memberId = Integer.parseInt(scanner.nextLine());
         System.out.print("Enter book ID to checkout: ");
         bookId = Integer.parseInt(scanner.nextLine());
-        Loan loan = new Loan(bookId, memberId);
+        Loan loan = new Loan(memberId, bookId);
         adaptor.borrowBook(loan); // Borrow the book using the adapter
     }
 

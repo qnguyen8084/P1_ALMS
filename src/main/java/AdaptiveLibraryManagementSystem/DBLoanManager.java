@@ -12,6 +12,8 @@ package AdaptiveLibraryManagementSystem;
 import java.sql.*;
 import java.util.Arrays;
 
+import static AdaptiveLibraryManagementSystem.DBManager.connect;
+
 public class DBLoanManager implements Transactions<Loan> {
 
     // Method to handle book borrowing process
@@ -127,7 +129,26 @@ public class DBLoanManager implements Transactions<Loan> {
     }
 
     @Override
-    public void search(String searchTerm) {
+    public void search(String searchString) {
+        String table = "loans";
+        String searchField = "id";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(
+                     STR."SELECT * FROM \{table} WHERE \{searchField} = ?")) {
+            pstmt.setInt(1, Integer.parseInt(searchString));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming the structure of the table is unknown, let's print out all columns
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        System.out.print(STR."\{rs.getMetaData().getColumnName(i)}: \{rs.getString(i)}\t");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
