@@ -46,10 +46,10 @@ public class UserInputExample {
         // Create an instance of UserInputExample using System.in and System.out
         UserInputExample userInputExample = new UserInputExample(System.in, System.out);
 
+
         // Start the main program (placeholder for other functionality)
         AdaptiveLibraryManagementSystem.main(args);  // Call the main method of the main system
 
         // Start the user interaction for input and output
-        userInputExample.start();
     }
 }

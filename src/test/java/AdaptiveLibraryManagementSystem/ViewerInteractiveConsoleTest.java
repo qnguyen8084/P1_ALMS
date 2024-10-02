@@ -14,14 +14,4 @@ class ViewerInteractiveConsoleTest {
         assertNotNull(viewerInteractiveConsole, "Object creation failed.");
     }
 
-    @Test
-    void testConstructor() {
-        // instantiating class without test constructor would start an infinite console loop
-        // this is just to illustrate that a test like this can't practically be implemented
-        // without changes to the structure of ViewerInteractiveConsole
-        assertThrows(StackOverflowError.class, ViewerInteractiveConsole::new,
-                "Infinite console loop started.");
-    }
-
-
 }
