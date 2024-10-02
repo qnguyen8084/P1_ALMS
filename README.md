@@ -24,19 +24,32 @@ We decided on using abstract classes for people and library items. This would al
 hierarchy by being able to create derived classes that inherit attributes from the abstract class. The abstract class
 is never instantiated.
 
+<figure>
+<figcaption>User Class Diagram</figcaption>
 <img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/User.png">
+</figure>
 
 Our decision to have a libraryItem as an abstract class as well is because there are many library items in a library
 such as books, magazines, journals, film, and the list goes on. They all have one thing in common, and it is an id
 associated with the item. From the abstract class we can expand it with subclasses that could have attributes specific
 to the item type.
 
+<figure>
+<figcaption>LibraryItem Class Diagram</figcaption>
 <img title="LibraryItem Class Diagram" alt="Current Class Diagram" width="1250" src="reportImages/LibraryItem.png">
+</figure>   
 
 
+<figure>
+<figcaption>AdminInterface</figcaption>
 <img title="AdminInterface" alt="Current Class Diagram" width="1678" src="reportImages/AdministratorInterface.jpg">
+</figure>
 
+
+<figure>
+<figcaption>Console to Database Adapter Interface</figcaption>
 <img title="Adapter" alt="Current Class Diagram" width="2012" src="reportImages/DBConsoleAdapter.png">
+</figure>
 
 ### Testing Coverage and Results
 We were not able to create a comprehensive test plan to get 100 percent code coverage.
@@ -47,4 +60,13 @@ a backup database that records all transactions that writes or deletes from the 
 we don't have a specific implementation to roll back the data. I have a bunch of tests
 in the tests section that does a lot, but my IDE helped generate a portion of those tests.
 
+
+<figure>
+<figcaption>Manual Test Results</figcaption>
+<img title="manualTestResults" alt="testCoverage" width="1678" src="reportImages/manualTestResults.png">
+</figure>
+
+<figure>
+<figcaption>Automated Test Results</figcaption>
 <img title="testCoverage" alt="testCoverage" width="1678" src="reportImages/testCoverage.png">
+</figure>
