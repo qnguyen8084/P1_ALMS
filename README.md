@@ -25,17 +25,17 @@ We decided on using abstract classes for people and library items. This would al
 hierarchy by being able to create derived classes that inherit attributes from the abstract class. The abstract class
 is never instantiated.
 
-<img title="User Class Diagram" alt="Current Class Diagram" width="400" src="reportImages/User.png">
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/User.png">
 
 Our decision to have a libraryItem as an abstract class as well is because there are many library items in a library
 such as books, magazines, journals, film, and the list goes on. They all have one thing in common, and it is an id
 associated with the item. From the abstract class we can expand it with subclasses that could have attributes specific
 to the item type.
 
-<img title="LibraryItem Class Diagram" alt="Current Class Diagram" width="400" src="reportImages/LibraryItem.png">
+<img title="LibraryItem Class Diagram" alt="Current Class Diagram" width="1250" src="reportImages/LibraryItem.png">
 
 
-<img title="AdminInterface" alt="Current Class Diagram" width="400" src="reportImages/AdministratorInterface.jpg">
+<img title="AdminInterface" alt="Current Class Diagram" width="1678" src="reportImages/AdministratorInterface.jpg">
 
-<img title="Adapter" alt="Current Class Diagram" width="400" src="reportImages/DBConsoleAdapter.png">
+<img title="Adapter" alt="Current Class Diagram" width="2012" src="reportImages/DBConsoleAdapter.png">
 
