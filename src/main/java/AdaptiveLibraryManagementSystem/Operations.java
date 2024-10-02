@@ -31,7 +31,7 @@ interface UserAdapterOperations {
 
 // Interface for loan-related operations using the adapter, such as borrowing, returning books, and listing loans.
 interface LoanAdapterOperations {
-    void borrowBook(int memberId, int bookId); // Method for a member to borrow a book.
+    void borrowBook(Loan loan); // Method for a member to borrow a book.
     void returnBook(int memberId, int bookId); // Method for a member to return a borrowed book.
     void listLoans(); // Method to list all current loans.
 }
@@ -66,25 +66,4 @@ interface ConsoleLoanOperations {
 // Interface for database operations related to searching in a specified table and field.
 interface DBOperations {
     void search(String table, String searchField, String searchString); // Method to perform a search in the database.
-}
-
-// Interface for database operations related to books, such as adding, removing, and listing books.
-interface DBBookOperations {
-    void addBook(String title, String author); // Method to add a book to the database.
-    void removeBook(int bookId); // Method to remove a book from the database using its ID.
-    void listBooks(); // Method to list all books from the database.
-}
-
-// Interface for database operations related to users, such as adding, removing, and listing members.
-interface DBUserOperations {
-    void addMember(String name); // Method to add a member to the database.
-    void removeMember(int memberId); // Method to remove a member from the database using their ID.
-    void listMembers(); // Method to list all members from the database.
-}
-
-// Interface for database operations related to loans, such as borrowing, returning books, and listing loans.
-interface DBLoanOperations {
-    void borrowBook(int memberId, int bookId); // Method to record a book loan in the database.
-    void returnBook(int memberId, int bookId); // Method to record a returned book in the database.
-    void listLoans(); // Method to list all loans from the database.
 }

@@ -4,7 +4,6 @@
 ### SDSU Global: CS635 FALL 2024
 ### Sept. 29, 2024
 
-
 #### **Design Documentation**
 Originally we thought the project was going to be a simple Adaptive Library Management System. Our design is modeled
 as close as we could to the MVC design which incorporates several design patterns in itself. This made the most sense

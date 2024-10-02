@@ -20,14 +20,14 @@ public class Loan {
     private final int memberId;    // ID of the member borrowing the book
 
    // Constructs a Loan object with a specified loan ID, book ID, and member ID.
-    public Loan(int id, int bookId, int memberId) {
+    public Loan(int id, int memberId, int bookId) {
         this.id = id;               // Initialize loan ID
         this.bookId = bookId;       // Initialize book ID
         this.memberId = memberId;   // Initialize member ID
     }
 
     // Constructs a Loan object without specifying the loan ID (for creating new loan records).
-    public Loan(int bookId, int memberId) {
+    public Loan(int memberId, int bookId) {
         this.bookId = bookId;       // Initialize book ID
         this.memberId = memberId;   // Initialize member ID
     }

@@ -32,17 +32,16 @@ class DBLoanManagerTest {
      */
     @Test
     void testBorrowBook() {
-        int memberId = 123;
-        int bookId = 456;
+        Loan loan = new Loan(123,456);
 
         // Set up the mock to do nothing when borrowBook is called
-        doNothing().when(dbLoanManager).borrowBook(memberId, bookId);
+        doNothing().when(dbLoanManager).borrowBook(loan);
 
         // Call the method being tested
-        dbLoanManager.borrowBook(memberId, bookId);
+        dbLoanManager.borrowBook(loan);
 
         // Verify that borrowBook was called exactly once with the correct parameters
-        verify(dbLoanManager, times(1)).borrowBook(memberId, bookId);
+        verify(dbLoanManager, times(1)).borrowBook(loan);
     }
 
     /**
@@ -69,13 +68,13 @@ class DBLoanManagerTest {
     @Test
     void testListLoans() {
         // Set up the mock to do nothing when listLoans is called
-        doNothing().when(dbLoanManager).listLoans();
+        doNothing().when(dbLoanManager).list();
 
         // Call the method being tested
-        dbLoanManager.listLoans();
+        dbLoanManager.list();
 
         // Verify that listLoans was called exactly once
-        verify(dbLoanManager, times(1)).listLoans();
+        verify(dbLoanManager, times(1)).list();
     }
 
     /**
@@ -124,15 +123,16 @@ class DBLoanManagerTest {
     void testAddLoan() {
         int memberId = 123;
         int bookId = 456;
+        Loan loan = new Loan(memberId, bookId);
 
         // Set up the mock to do nothing when addLoan is called
-        doNothing().when(dbLoanManager).addLoan(bookId, memberId);
+        doNothing().when(dbLoanManager).add(loan);
 
         // Call the method being tested
-        dbLoanManager.addLoan(bookId, memberId);
+        dbLoanManager.add(loan);
 
         // Verify that addLoan was called exactly once with the correct parameters
-        verify(dbLoanManager, times(1)).addLoan(bookId, memberId);
+        verify(dbLoanManager, times(1)).add(loan);
     }
 
     /**
