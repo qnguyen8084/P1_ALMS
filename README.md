@@ -25,13 +25,19 @@ hierarchy by being able to create derived classes that inherit attributes from t
 is never instantiated.
 
 <figure>
-<figcaption>First Sketch</figcaption>
-<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/diagram1.jpg">
+<figcaption>Class Diagram</figcaption></figcaption>
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/classDiagram.jpg">
 </figure>
 
 <figure>
-<figcaption>Second Rough Sketch</figcaption>
-<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/diagram2.jpg">
+<figcaption>Class Diagram</figcaption>
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/classDiagram2.jpg">
+</figure>
+
+
+<figure>
+<figcaption>Composite Diagram</figcaption>
+<img title="User Class Diagram" alt="Current Class Diagram" width="926" src="reportImages/relationalDiagram.png">
 </figure>
 
 <figure>
@@ -67,8 +73,7 @@ A majority of our testing was manual testing, and it seems that the application 
 We are able to add, remove, and search for members, books, and loans. Data persistence is working
 with the database. We are able to add, remove, and search for entries in the database. We hava
 a backup database that records all transactions that writes or deletes from the database, however
-we don't have a specific implementation to roll back the data. I have a bunch of tests
-in the tests section that does a lot, but my IDE helped generate a portion of those tests.
+we don't have a specific implementation to roll back the data.
 
 
 <figure>
