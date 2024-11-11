@@ -17,6 +17,8 @@ Identify classes with too many responsibilities
 Refactor those classes into smaller classes with single responsibilities with the use of design patterns
 Use of decorator and Composite
 
+Serperate database operations
+
 Open/Closed Principle
 Understand the importance of open/closed
 open for extension, closed for modification
@@ -26,6 +28,10 @@ abstract classes and interfaces to separate client from ...
 template method pattern used
 interface > implementation inheritance = more adaptability
 composition over inheritance
+
+Use more abstract classes and interfaces
+target LibraryItem
+
 
 Liskov substitution principle
 Rule broken if new subclass requires changes to any client of the base class or interface
@@ -39,9 +45,11 @@ subtype instance that is given.
 Context: The way the client interacts with the subtype.
 
 LSP rules
- 
 
+Ensure derived classes can be used interchangeably with base classes
 
+ISP
+Further break down interfaces into smaller interfaces
 
 
 Golden master test
